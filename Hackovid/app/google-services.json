@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "402750719381-hri12m3k0mjnm7rh5o82frd3vsumkjph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apptest.nensalparc",
+            "certificate_hash": "375c4c096edf3fdca5bd10109867687404ce4732"
+          }
+        },
+        {
           "client_id": "402750719381-vl71an6suedjkar06k27e2sv493ocpmc.apps.googleusercontent.com",
           "client_type": 3
         }
