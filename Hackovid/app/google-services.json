@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "402750719381",
+    "firebase_url": "https://nensalparc.firebaseio.com",
+    "project_id": "nensalparc",
+    "storage_bucket": "nensalparc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402750719381:android:4eaef1fa68c311560ae29c",
+        "android_client_info": {
+          "package_name": "com.apptest.nensalparc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402750719381-vl71an6suedjkar06k27e2sv493ocpmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtvCktGYlJdYgGe07wj6YFubQram23M8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402750719381-vl71an6suedjkar06k27e2sv493ocpmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
