@@ -12,7 +12,7 @@
     <string name="menu_config">Configuració</string>
     <string name="menu_logout">Sortir</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="reservation_make_reservation">Reservar></string>
 
 </resources>
