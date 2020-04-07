@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.apptest.nensalparc.AreaInfo
+//import com.apptest.nensalparc.AreaInfo
 import com.apptest.nensalparc.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
@@ -32,7 +32,7 @@ class GalleryFragment : Fragment() {
         return root
     }
 
-    var areaInfoFragment = AreaInfo()
+    //var areaInfoFragment = AreaInfo()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

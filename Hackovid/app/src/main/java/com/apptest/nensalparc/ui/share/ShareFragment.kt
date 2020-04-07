@@ -22,7 +22,7 @@ class ShareFragment : Fragment() {
         shareViewModel =
             ViewModelProviders.of(this).get(ShareViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_share)
+        val textView: TextView = root.findViewById(R.id.text_address)
         shareViewModel.text.observe(this, Observer {
             textView.text = it
         })
