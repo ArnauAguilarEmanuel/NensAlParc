@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,7 +36,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
-
+    var i = 0;
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val sydney = LatLng(-33.852, 151.211)
@@ -43,7 +44,28 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mMap.addMarker(
             MarkerOptions().position(sydney)
                 .title("Marker in Sydney")
+
         )
+
+        mMap.setOnMarkerClickListener{
+
+            if(i%2 == 0)it.title = "Hello";
+            else it.title = "by";
+            i++
+
+
+            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+
+            it.showInfoWindow();
+            true;
+        }
+
+        mMap.setOnMapClickListener {
+            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,0f)
+            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
+        }
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
@@ -66,6 +88,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         val userId = userPreferences?.getString("UserId", "")
 
 
+
         textView.text = userId;
         return root
     }
@@ -75,6 +98,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         mapView = map as MapView
         mapView?.onCreate(savedInstanceState)
+
 
 
         mapView?.getMapAsync(this)
