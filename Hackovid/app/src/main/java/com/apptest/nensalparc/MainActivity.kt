@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import androidx.core.app.ActivityCompat
 import com.apptest.nensalparc.ui.SignInActivity
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +50,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+// Write a message to the database
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Hello, World!")
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
