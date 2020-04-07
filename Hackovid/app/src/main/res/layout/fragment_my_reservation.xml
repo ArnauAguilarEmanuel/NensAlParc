@@ -38,10 +38,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_reservation_date"
             android:textSize="20dp"
-            android:text="Reserva: 11/34/2060  \t  16:00"
+            android:text="Reserva:"
             android:gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_reservation_date"
+            android:textSize="25dp"
+            android:text="11/34/2060  \t16:00"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
             />
 
         <Button
@@ -55,8 +63,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/a" //CHANGE HERE
-            android:textSize="10dp"
+            android:id="@+id/text_reservation_request"
+            android:textSize="13dp"
             android:text="Demanat el dia A a les B"
             android:gravity="center_horizontal"
             />

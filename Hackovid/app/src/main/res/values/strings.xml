@@ -12,7 +12,7 @@
     <string name="menu_info">Informació</string>
     <string name="menu_config">Configuració</string>
     <string name="menu_logout">Sortir</string>
-    <string name="my_reservation_cancel">Cancel·lar reseva</string>
+    <string name="my_reservation_cancel">Cancel·lar reserva</string>
 
 
     <string name="reservation_make_reservation">Reservar></string>
