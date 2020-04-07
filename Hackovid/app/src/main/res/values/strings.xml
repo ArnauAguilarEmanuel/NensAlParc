@@ -7,10 +7,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_reservation">Reserva</string>
+    <string name="menu_map">Mapa</string>
+    <string name="menu_reservation">La meva reserva</string>
     <string name="menu_info">Informació</string>
     <string name="menu_config">Configuració</string>
     <string name="menu_logout">Sortir</string>
+    <string name="my_reservation_cancel">Cancel·lar reseva</string>
+
 
     <string name="reservation_make_reservation">Reservar></string>
 
