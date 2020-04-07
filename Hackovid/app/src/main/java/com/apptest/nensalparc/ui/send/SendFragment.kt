@@ -1,5 +1,6 @@
 package com.apptest.nensalparc.ui.send
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +16,16 @@ import com.apptest.nensalparc.HourModel
 import com.apptest.nensalparc.R
 import com.apptest.nensalparc.TimeFractionModel
 import com.apptest.nensalparc.adapter.HourAdapter
+import kotlinx.android.synthetic.main.fragment_reservation.*
 import kotlinx.android.synthetic.main.fragment_reservation.view.*
 import kotlinx.android.synthetic.main.fragment_send.*
+import kotlinx.android.synthetic.main.fragment_send.recyclerview
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SendFragment : Fragment() {
@@ -30,6 +37,7 @@ class SendFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?{
+
         return inflater.inflate(R.layout.fragment_reservation, container, false)
     }
 
@@ -40,6 +48,21 @@ class SendFragment : Fragment() {
 
         lifecycleScope.launch{
             try {
+
+                val c = Calendar.getInstance()
+                val year = c.get(Calendar.YEAR)
+                val month = c.get(Calendar.MONTH)
+                val day = c.get(Calendar.DAY_OF_MONTH)
+
+                button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
+
+                button_select_day.setOnClickListener {
+                    val dpd = DatePickerDialog(this@SendFragment.requireContext(), DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                        button_select_day.text = mDay.toString() + "/" + (mMonth + 1) + "/" + mYear
+                    }, year, month, day)
+                    dpd.show()
+                }
+
                 recyclerview.adapter = adapter
                 recyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
