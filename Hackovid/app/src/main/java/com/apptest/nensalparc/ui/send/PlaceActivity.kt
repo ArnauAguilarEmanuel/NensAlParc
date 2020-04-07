@@ -13,19 +13,25 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apptest.nensalparc.AreaInfoModel
 import com.apptest.nensalparc.HourModel
 import com.apptest.nensalparc.R
 import com.apptest.nensalparc.TimeFractionModel
 import com.apptest.nensalparc.adapter.HourAdapter
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_reservation.*
+import kotlinx.android.synthetic.main.fragment_reservation.image_preview
+import kotlinx.android.synthetic.main.fragment_reservation.text_address
+import kotlinx.android.synthetic.main.fragment_reservation.text_name
 import kotlinx.android.synthetic.main.fragment_send.recyclerview
+import kotlinx.android.synthetic.main.fragment_share.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class PlaceActivity : AppCompatActivity() {
+class PlaceActivity: AppCompatActivity() {
 
     private lateinit var sendViewModel: SendViewModel
 
@@ -45,6 +51,10 @@ class PlaceActivity : AppCompatActivity() {
     fun initUi(){
 
         var context = this
+        var place = context.intent.getSerializableExtra("place") as AreaInfoModel
+        text_address.text = place.address;
+        text_name.text = place.name;
+        Picasso.get().load(place.imageUrl).into(image_preview);
         lifecycleScope.launch{
             try {
 

@@ -38,6 +38,7 @@ class ShareFragment(var info: AreaInfoModel) : Fragment() {
         Picasso.get().load(info.imageUrl).into(image_preview);
         button_make_reservation.setOnClickListener({
             val intent = Intent(context, PlaceActivity::class.java).apply {
+                this.putExtra("place", info);
             }
             startActivity(intent);
         })
