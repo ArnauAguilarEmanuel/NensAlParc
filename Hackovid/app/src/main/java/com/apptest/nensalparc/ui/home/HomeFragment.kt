@@ -1,6 +1,9 @@
 package com.apptest.nensalparc.ui.home
 
+import android.animation.Animator
+import android.animation.LayoutTransition
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,25 +30,32 @@ import com.google.android.gms.maps.MapView
 
 
 
-
-
-
-
 class HomeFragment : Fragment(), OnMapReadyCallback {
 
 
     var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
     var i = 0;
+
+    var latLngs = arrayOf<LatLng>(LatLng(-33.852, 151.211), LatLng(33.852, -151.211), LatLng(-33.852, -151.211))
     override fun onMapReady(googleMap: GoogleMap) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            infoDisplay.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
+            mapContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
+        }
         mMap = googleMap
-        val sydney = LatLng(-33.852, 151.211)
 
-        mMap.addMarker(
-            MarkerOptions().position(sydney)
-                .title("Marker in Sydney")
 
-        )
+
+
+        latLngs.forEach {
+            mMap.addMarker(
+                MarkerOptions().position(it)
+                    .title("Marker somewhere")
+
+            )
+        }
+
 
         mMap.setOnMarkerClickListener{
 
@@ -66,7 +76,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
         }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLngs[0]))
     }
 
     private lateinit var homeViewModel: HomeViewModel
