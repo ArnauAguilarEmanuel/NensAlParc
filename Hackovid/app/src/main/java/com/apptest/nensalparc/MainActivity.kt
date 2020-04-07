@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.core.app.ActivityCompat
 import com.apptest.nensalparc.ui.SignInActivity
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        ActivityCompat.requestPermissions(this, permissions,0)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -60,13 +64,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+
+
+
         val userPreferences = baseContext?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val userId = userPreferences?.getString("UserId", "")
 
         if(userId == ""){
             val intent = Intent(this, SignInActivity::class.java).apply {
             }
-            startActivity(intent)
+            //startActivity(intent)
             return;
         }
 
