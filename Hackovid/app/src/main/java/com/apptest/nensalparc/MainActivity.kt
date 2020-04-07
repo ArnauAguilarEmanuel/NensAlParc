@@ -1,5 +1,7 @@
 package com.apptest.nensalparc
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import com.apptest.nensalparc.ui.SignInActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,5 +56,20 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val userPreferences = baseContext?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
+        val userId = userPreferences?.getString("UserId", "")
+
+        if(userId == ""){
+            val intent = Intent(this, SignInActivity::class.java).apply {
+            }
+            startActivity(intent)
+            return;
+        }
+
+
     }
 }

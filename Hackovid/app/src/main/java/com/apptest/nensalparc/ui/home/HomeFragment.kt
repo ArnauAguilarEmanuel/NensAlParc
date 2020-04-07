@@ -1,5 +1,6 @@
 package com.apptest.nensalparc.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this, Observer {
             textView.text = it
         })
+
+        val userPreferences = activity?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
+        val userId = userPreferences?.getString("UserId", "")
+
+        textView.text = userId;
         return root
     }
 }
