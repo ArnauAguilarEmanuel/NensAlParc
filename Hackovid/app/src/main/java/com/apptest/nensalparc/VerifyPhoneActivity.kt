@@ -17,6 +17,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_verify_phone.*
 import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit
@@ -61,16 +65,43 @@ class VerifyPhoneActivity : AppCompatActivity() {
             if(it.isSuccessful){
 
                 val user = it.result?.user
-                val editor = this.getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit()
-                editor.putString("UserId", user?.uid)
-                editor.apply()
 
 
 
-                val intent = Intent(this, MainActivity::class.java).apply {
-                }
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent);
+                // if user does not exist create
+                var db = FirebaseDatabase.getInstance().reference.root;
+                db.child("Users").child(user?.uid.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                        if(dataSnapshot.exists()){
+                            val intent = Intent(baseContext, MainActivity::class.java).apply {
+                            }
+                            val editor = baseContext.getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit()
+                            editor.putString("UserId", user?.uid.toString())
+                            editor.putString("UserName", dataSnapshot.child("name").value.toString())
+                            editor.putString("UserDNI", dataSnapshot.child("dni").value.toString())
+                            editor.putString("UserLocation", dataSnapshot.child("location").value.toString())
+                            editor.apply()
+
+
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent);
+                        }else{
+                            val intent = Intent(baseContext, RegisterActivity::class.java).apply {
+                                this.putExtra("UserId", user?.uid.toString())
+                            }
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent);
+                        }
+
+                    }
+
+                })
+
 
             }else{
                 Toast.makeText(this, it.exception?.message, Toast.LENGTH_LONG)

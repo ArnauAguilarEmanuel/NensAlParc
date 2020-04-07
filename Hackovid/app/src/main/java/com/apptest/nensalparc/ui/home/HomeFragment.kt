@@ -17,6 +17,9 @@ import com.apptest.nensalparc.R
 import com.google.android.gms.maps.SupportMapFragment
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.apptest.nensalparc.AreaInfoModel
+import com.apptest.nensalparc.User
+import com.apptest.nensalparc.ui.share.ShareFragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,16 +29,20 @@ import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.map
 import com.google.android.gms.maps.MapView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 
-
-
-class HomeFragment : Fragment(), OnMapReadyCallback {
+class HomeFragment: Fragment(), OnMapReadyCallback {
 
 
     var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
     var i = 0;
+    var places = mutableMapOf<String, AreaInfoModel>()
 
     var latLngs = arrayOf<LatLng>(LatLng(-33.852, 151.211), LatLng(33.852, -151.211), LatLng(-33.852, -151.211))
     override fun onMapReady(googleMap: GoogleMap) {
@@ -45,42 +52,63 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         }
         mMap = googleMap
 
+        db.child("Locations").child(user.location.toString()).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                dataSnapshot.child("Places").children.forEach() {
+                    var place = AreaInfoModel(it.child("Name").value.toString(),it.child("Address").value.toString(),it.child("imageURL").value.toString())
+                    places.put(place.name.toString(),place)
+                    mMap.addMarker(
+                        MarkerOptions().position(
+                            LatLng(it.child("LatitudeLongitude").child("Lat").value.toString().toDouble(),
+                                it.child("LatitudeLongitude").child("Long").value.toString().toDouble()
+                            )
+                        ).title(it.child("Name").value.toString())
+
+                    )
+                }
+
+                mMap.setOnMarkerClickListener{
+
+
+                    var ft = fragmentManager?.beginTransaction();
+
+                    //get the actual city
+                    var place = places[it.title]!!
+                    ft?.replace(R.id.infoDisplay, ShareFragment(place))
+                    ft?.commit();
+
+
+                    infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+                    mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+
+                    it.showInfoWindow();
+                    true;
+                }
+
+                mMap.setOnMapClickListener {
+                    infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,0f)
+                    mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
+                }
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(dataSnapshot.child("LatitudeLongitude").child("Lat").value as Double,dataSnapshot.child("LatitudeLongitude").child("Long").value as Double)))
+
+            }
+        });
 
 
 
-        latLngs.forEach {
-            mMap.addMarker(
-                MarkerOptions().position(it)
-                    .title("Marker somewhere")
-
-            )
-        }
 
 
-        mMap.setOnMarkerClickListener{
-
-            if(i%2 == 0)it.title = "Hello";
-            else it.title = "by";
-            i++
-
-
-            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
-            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
-
-            it.showInfoWindow();
-            true;
-        }
-
-        mMap.setOnMapClickListener {
-            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,0f)
-            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
-        }
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLngs[0]))
     }
 
     private lateinit var homeViewModel: HomeViewModel
-
+    lateinit var user : User;
+    val db = FirebaseDatabase.getInstance().reference;
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -96,6 +124,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         val userPreferences = activity?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val userId = userPreferences?.getString("UserId", "")
+        val UserName = userPreferences?.getString("UserName", "")
+        val UserDNI = userPreferences?.getString("UserDNI", "")
+        val UserLocation = userPreferences?.getString("UserLocation", "")
+
+        user = User(UserName, UserLocation, UserDNI, userId);
 
 
 
