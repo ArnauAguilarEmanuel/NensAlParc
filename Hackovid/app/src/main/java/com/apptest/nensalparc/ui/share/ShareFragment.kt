@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.apptest.nensalparc.AreaInfoModel
-import com.apptest.nensalparc.MainActivity
 import com.apptest.nensalparc.R
-import com.apptest.nensalparc.ui.send.SendFragment
+import com.apptest.nensalparc.ui.send.PlaceActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_share.*
 
@@ -40,7 +37,7 @@ class ShareFragment(var info: AreaInfoModel) : Fragment() {
 
         Picasso.get().load(info.imageUrl).into(image_preview);
         button_make_reservation.setOnClickListener({
-            val intent = Intent(context, SendFragment::class.java).apply {
+            val intent = Intent(context, PlaceActivity::class.java).apply {
             }
             startActivity(intent);
         })

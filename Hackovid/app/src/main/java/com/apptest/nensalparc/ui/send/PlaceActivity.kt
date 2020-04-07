@@ -1,15 +1,16 @@
 package com.apptest.nensalparc.ui.send
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apptest.nensalparc.HourModel
@@ -17,35 +18,33 @@ import com.apptest.nensalparc.R
 import com.apptest.nensalparc.TimeFractionModel
 import com.apptest.nensalparc.adapter.HourAdapter
 import kotlinx.android.synthetic.main.fragment_reservation.*
-import kotlinx.android.synthetic.main.fragment_reservation.view.*
-import kotlinx.android.synthetic.main.fragment_send.*
 import kotlinx.android.synthetic.main.fragment_send.recyclerview
-import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class SendFragment : Fragment() {
+class PlaceActivity : AppCompatActivity() {
 
     private lateinit var sendViewModel: SendViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View?{
-
-        return inflater.inflate(R.layout.fragment_reservation, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_reservation)
+        initUi()
     }
 
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        return super.onCreateView(name, context, attrs)
+
+
+    }
     private val adapter = HourAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-        super.onViewCreated(view,savedInstanceState)
+    fun initUi(){
 
+        var context = this
         lifecycleScope.launch{
             try {
 
@@ -57,14 +56,14 @@ class SendFragment : Fragment() {
                 button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
 
                 button_select_day.setOnClickListener {
-                    val dpd = DatePickerDialog(this@SendFragment.requireContext(), DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                    val dpd = DatePickerDialog(context, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
                         button_select_day.text = mDay.toString() + "/" + (mMonth + 1) + "/" + mYear
                     }, year, month, day)
                     dpd.show()
                 }
 
                 recyclerview.adapter = adapter
-                recyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
                 val hours = ArrayList<HourModel>()
                 hours.add(HourModel(9, ArrayList<TimeFractionModel>()))
