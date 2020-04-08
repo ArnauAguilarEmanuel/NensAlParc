@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.arch.core.executor.TaskExecutor
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -61,6 +62,7 @@ class VerifyPhoneActivity : AppCompatActivity() {
 
 
     private fun signInWithCredential(credential: PhoneAuthCredential) {
+        var act = this;
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener({
             if(it.isSuccessful){
 
@@ -87,6 +89,8 @@ class VerifyPhoneActivity : AppCompatActivity() {
                             editor.putString("UserLocation", dataSnapshot.child("location").value.toString())
                             editor.apply()
 
+                            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                            ActivityCompat.requestPermissions(act, permissions,0)
 
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent);

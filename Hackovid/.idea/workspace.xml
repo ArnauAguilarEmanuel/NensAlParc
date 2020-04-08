@@ -39,6 +39,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/RegisterActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-48">
+              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MainActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/SignInActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="143" column="48" lean-forward="true" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="942">
@@ -66,10 +102,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/home/HomeFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="203">
               <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
             </state>
           </provider>
@@ -89,42 +125,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="512">
               <caret line="15685" column="17" selection-start-line="15685" selection-start-column="17" selection-end-line="15685" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/RegisterActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/share/ShareFragment.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Reservation.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MapsActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -174,7 +174,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_share.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/User.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/share/PlaceActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
@@ -184,7 +183,6 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/AreaInfo.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Hour.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_timefraction_button.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/TimeFraction.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/send/PlaceActivity.kt" />
@@ -193,6 +191,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/home/HomeFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MainActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt" />
       </list>
     </option>
   </component>
@@ -525,7 +525,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14149444" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14149444" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -538,8 +538,8 @@
       <window_info anchor="bottom" id="Logcat" order="2" sideWeight="0.9081876" weight="0.219935" />
       <window_info anchor="bottom" id="TODO" order="3" sideWeight="0.49880764" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49920508" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.15302067" side_tool="true" visible="true" weight="0.097508125" />
-      <window_info active="true" anchor="bottom" id="Build" order="6" sideWeight="0.8469793" visible="true" weight="0.097508125" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.15341812" side_tool="true" visible="true" weight="0.097508125" />
+      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.8465819" visible="true" weight="0.097508125" />
       <window_info anchor="bottom" id="Android Profiler" order="7" sideWeight="0.49920508" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49841017" weight="0.25785482" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.49284577" weight="0.30985916" />
@@ -555,12 +555,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt</url>
-          <line>94</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/send/PlaceActivity.kt</url>
           <line>174</line>
@@ -726,13 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_send.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -841,13 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/SignInActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/User.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -882,13 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MainActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MapsActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -910,20 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/RegisterActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="141" column="129" selection-start-line="141" selection-start-column="129" selection-end-line="141" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -939,13 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c5ca33b2db60b40ad5235885a2a9c6d/play-services-maps-17.0.0/jars/classes.jar!/com/google/android/gms/maps/GoogleMap.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
@@ -953,10 +905,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="942">
+          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/SignInActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/RegisterActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-48">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="141" column="129" selection-start-line="141" selection-start-column="129" selection-end-line="141" selection-end-column="129" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/home/HomeFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="203">
           <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/MainActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/VerifyPhoneActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="143" column="48" lean-forward="true" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
         </state>
       </provider>
     </entry>
