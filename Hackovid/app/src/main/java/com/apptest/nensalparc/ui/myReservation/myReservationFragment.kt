@@ -1,6 +1,7 @@
 package com.apptest.nensalparc.ui.myReservation
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -79,42 +80,58 @@ class myReservationFragment : Fragment(){
         val UserLocation = userPreferences?.getString("UserLocation", "")
 
         var user = User(UserName, UserLocation, UserDNI, userId);
-
-        my_reservation_cancel.setOnClickListener({
-            db.child("Users").child(user.uId.toString()).child("Reservation").addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                }
-
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                    db.child("Locations").child(user.location.toString()).child("Places").child(dataSnapshot.child("placeID").value.toString()).child("SessionData")
-                        .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
-
-                    db.child("Users").child(user.uId.toString()).child("Reservation").removeValue()
-
-                }
-            })
-
-        })
-
-
         db.child("Users").child(user.uId.toString()).child("Reservation").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var reservedDate = parseDate(dataSnapshot.child("reservedDate").value.toString(),"-")
-                var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
-                if(datePassed(reservedDate, reservedHour, dataSnapshot.child(("duration")).value.toString().toInt())){
-                    db.child("Users").child(user.uId.toString()).child("Reservation").removeValue()
+                if(dataSnapshot.exists()){
+                    my_reservation_cancel.visibility = View.VISIBLE
+                    text_reservation_address.visibility = View.VISIBLE
+                    text_reservation_date.visibility = View.VISIBLE
+                    text_reservation_date_end.visibility = View.VISIBLE
+                    text_reservation_request.visibility = View.VISIBLE
+                    reserva.visibility = View.VISIBLE
+                    durant.visibility = View.VISIBLE
+
+                    my_reservation_cancel.setOnClickListener({
+                        db.child("Locations").child(user.location.toString()).child("Places").child(dataSnapshot.child("placeID").value.toString()).child("SessionData")
+                            .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
+
+                        db.child("Users").child(user.uId.toString()).child("Reservation").removeValue()
+                        my_reservation_cancel.visibility = View.GONE
+                        text_reservation_address.visibility = View.GONE
+                        text_reservation_date.visibility = View.GONE
+                        text_reservation_date_end.visibility = View.GONE
+                        text_reservation_request.visibility = View.GONE
+                        reserva.visibility = View.GONE
+                        durant.visibility = View.GONE
+                        text_reservation_name.text = "Reserva Cancelada"
+                    })
+
+                    var reservedDate = parseDate(dataSnapshot.child("reservedDate").value.toString(),"-")
+                    var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
+                    if(datePassed(reservedDate, reservedHour, dataSnapshot.child(("duration")).value.toString().toInt())){
+                        db.child("Users").child(user.uId.toString()).child("Reservation").removeValue()
+                    }else{
+                        text_reservation_name.text = dataSnapshot.child("name").value.toString()
+                        text_reservation_address.text = dataSnapshot.child("address").value.toString()
+                        text_reservation_date.text = dataSnapshot.child("reservedDate").value.toString().replace("-","/") +"\t" + dataSnapshot.child("reservedHour").value.toString().replace(".",":")
+                        text_reservation_date_end.text = dataSnapshot.child("duration").value.toString() + " minuts"
+                        text_reservation_request.text = "Reserva realitzada el dia "+dataSnapshot.child("reservationDate").value.toString().replace("-","/")+ " a les "+dataSnapshot.child("reservationHour").value.toString().replace(".",":")
+                    }
+
                 }else{
-                    text_reservation_name.text = dataSnapshot.child("name").value.toString()
-                    text_reservation_address.text = dataSnapshot.child("address").value.toString()
-                    text_reservation_date.text = dataSnapshot.child("reservedDate").value.toString().replace("-","/") +"\t" + dataSnapshot.child("reservedHour").value.toString().replace(".",":")
-                    text_reservation_date_end.text = dataSnapshot.child("duration").value.toString() + " minuts"
-                    text_reservation_request.text = "Reserva realitzada el dia "+dataSnapshot.child("reservationDate").value.toString().replace("-","/")+ " a les "+dataSnapshot.child("reservationHour").value.toString().replace(".",":")
+                    my_reservation_cancel.visibility = View.GONE
+                    text_reservation_address.visibility = View.GONE
+                    text_reservation_date.visibility = View.GONE
+                    text_reservation_date_end.visibility = View.GONE
+                    text_reservation_request.visibility = View.GONE
+                    reserva.visibility = View.GONE
+                    durant.visibility = View.GONE
+                    text_reservation_name.text = "No tens cap reserva activa"
+
                 }
             }
         })

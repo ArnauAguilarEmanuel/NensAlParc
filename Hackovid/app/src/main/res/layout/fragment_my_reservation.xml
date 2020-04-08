@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:id="@+id/reserva"
             android:text="Reserva:"
             android:gravity="center_horizontal"
             />
@@ -54,6 +55,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/durant"
             android:textSize="20dp"
             android:text="durant:"
             android:gravity="center_horizontal"
