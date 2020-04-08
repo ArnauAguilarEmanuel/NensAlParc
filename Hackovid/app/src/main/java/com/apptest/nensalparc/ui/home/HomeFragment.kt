@@ -49,6 +49,7 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
             mapContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
         }
         mMap = googleMap
+        mMap.setMyLocationEnabled(true)
 
         db.child("Locations").child(user.location.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
