@@ -103,6 +103,7 @@ class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
             reservation.reservationHour =hour.toString() + ":" + minute
         reservation.reservedDate = date
         reservation.reservedHour = fraction.start.toString()
+        reservation.duration = fraction.duration.toString();
         db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
     }
 
@@ -138,7 +139,7 @@ class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                             if(dataSnapshot.exists()){
                                 var reservedDate = parseDate(dataSnapshot.child("reservedDate").value.toString(),"-")
                                 var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
-                                if(datePassed(reservedDate, reservedHour, fraction.duration!!)){
+                                if(datePassed(reservedDate, reservedHour, dataSnapshot.child("duration").value.toString().toInt())){
                                     if(fraction.currentCapacity != fraction.maxCapacity){
                                         makeReservation(fraction);
                                     }

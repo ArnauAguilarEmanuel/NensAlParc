@@ -14,21 +14,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.apptest.nensalparc.R
-import com.google.android.gms.maps.SupportMapFragment
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.apptest.nensalparc.AreaInfoModel
 import com.apptest.nensalparc.User
 import com.apptest.nensalparc.ui.share.ShareFragment
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.map
-import com.google.android.gms.maps.MapView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -95,8 +91,13 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
                     infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,0f)
                     mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
                 }
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(
+                    dataSnapshot.child("LatitudeLongitude").child("Lat").value as Double,
+                    dataSnapshot.child("LatitudeLongitude").child("Long").value as Double
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(dataSnapshot.child("LatitudeLongitude").child("Lat").value as Double,dataSnapshot.child("LatitudeLongitude").child("Long").value as Double)))
+                )))
+
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
 
             }
         });

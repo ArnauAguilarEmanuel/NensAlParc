@@ -51,6 +51,22 @@
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="durant:"
+            android:gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_reservation_date_end"
+            android:textSize="25dp"
+            android:text="11/34/2060  \t16:00"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            />
 
         <Button
             android:layout_width="wrap_content"
