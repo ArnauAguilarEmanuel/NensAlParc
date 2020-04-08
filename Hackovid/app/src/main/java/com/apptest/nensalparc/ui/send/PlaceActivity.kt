@@ -30,7 +30,14 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.round
 
+
+fun Float.round(decimals: Int): Float {
+    var multiplier = 1f
+    repeat(decimals) { multiplier *= 10f }
+    return round(this * multiplier) / multiplier
+}
 
 class PlaceActivity: AppCompatActivity() {
 
@@ -66,6 +73,7 @@ class PlaceActivity: AppCompatActivity() {
             peopleHours[child.value.toString().toFloat()] =
                 peopleHours[child.value.toString().toFloat()].toString().toInt() + 1
         }
+        adapter.date = dayId
     }
 
     fun displayData(dataSnapshot: DataSnapshot,sessionStart: Int, sessionEnd : Int, sessionDuration : Int, maxCapacity: Int ){
@@ -76,7 +84,7 @@ class PlaceActivity: AppCompatActivity() {
             for (j in 0..(60 / sessionDuration) - 1) {
                 hours[i - sessionStart].timeFractions?.add(
                     TimeFractionModel(
-                        j * sessionDuration,
+                        (i + ((j*sessionDuration) / 100f)).round(2),
                         sessionDuration,
                         maxCapacity,
                         peopleHours[i + ((j*sessionDuration) / 100f)]
@@ -87,6 +95,8 @@ class PlaceActivity: AppCompatActivity() {
         }
 
         adapter.elements = hours
+        adapter.user = user
+        adapter.place = place
         adapter.notifyDataSetChanged()
     }
     var dayId = ""
@@ -125,11 +135,12 @@ class PlaceActivity: AppCompatActivity() {
         override fun onCancelled(databaseError: DatabaseError) {
         }
     }
-
+    var user = User()
+    var place = AreaInfoModel()
     fun initUi(){
 
         var context = this
-        var place = context.intent.getSerializableExtra("place") as AreaInfoModel
+        place = context.intent.getSerializableExtra("place") as AreaInfoModel
         text_address.text = place.address;
         text_name.text = place.name;
         Picasso.get().load(place.imageUrl).into(image_preview);
@@ -139,7 +150,8 @@ class PlaceActivity: AppCompatActivity() {
         val UserDNI = userPreferences?.getString("UserDNI", "")
         val UserLocation = userPreferences?.getString("UserLocation", "")
 
-        var user = User(UserName, UserLocation, UserDNI, userId);
+        user = User(UserName, UserLocation, UserDNI, userId);
+
 
         lifecycleScope.launch{
             try {
@@ -168,6 +180,7 @@ class PlaceActivity: AppCompatActivity() {
 
 
                 recyclerview.adapter = adapter
+
                 recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
