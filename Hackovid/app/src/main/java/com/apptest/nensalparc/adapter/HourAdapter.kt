@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.apptest.nensalparc.*
@@ -105,9 +106,10 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
         reservation.reservedHour = fraction.start.toString()
         reservation.duration = fraction.duration.toString();
         db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
+        Toast.makeText(fullcontext,"Reservat!", Toast.LENGTH_LONG).show();
     }
 
-
+    var fullcontext: Context? = null
     open fun forOnBindViewHolder(holder: ViewHolder, position: Int){
         val element = elements[position]
 
@@ -161,6 +163,7 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        fullcontext = holder.context
         forOnBindViewHolder(holder, position);
     }
 
