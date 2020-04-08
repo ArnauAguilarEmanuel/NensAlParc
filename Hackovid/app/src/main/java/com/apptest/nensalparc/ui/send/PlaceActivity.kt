@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apptest.nensalparc.*
 import com.apptest.nensalparc.adapter.HourAdapter
+import com.apptest.nensalparc.adapter.HourAdapterAdmin
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -54,7 +55,7 @@ class PlaceActivity: AppCompatActivity() {
 
 
     }
-    private val adapter = HourAdapter()
+    private var adapter = HourAdapter()
     val db = FirebaseDatabase.getInstance().reference;
 
     var hours = ArrayList<HourModel>()
@@ -138,60 +139,74 @@ class PlaceActivity: AppCompatActivity() {
     var user = User()
     var place = AreaInfoModel()
     fun initUi(){
-
         var context = this
-        place = context.intent.getSerializableExtra("place") as AreaInfoModel
-        text_address.text = place.address;
-        text_name.text = place.name;
-        Picasso.get().load(place.imageUrl).into(image_preview);
-        val userPreferences = this.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
+
+        val userPreferences = context.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val userId = userPreferences?.getString("UserId", "")
         val UserName = userPreferences?.getString("UserName", "")
         val UserDNI = userPreferences?.getString("UserDNI", "")
         val UserLocation = userPreferences?.getString("UserLocation", "")
 
         user = User(UserName, UserLocation, UserDNI, userId);
+        db.child("Users").child(user.uId.toString()).child("admin").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
 
-
-        lifecycleScope.launch{
-            try {
-
-                val c = Calendar.getInstance()
-                val year = c.get(Calendar.YEAR)
-                val month = c.get(Calendar.MONTH)
-                val day = c.get(Calendar.DAY_OF_MONTH)
-
-
-
-                button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
-
-
-                button_select_day.setOnClickListener {
-                    val dpd = DatePickerDialog(context, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-                        button_select_day.text = mDay.toString() + "/" + (mMonth + 1) + "/" + mYear
-                        sYear = mYear
-                        sMonth = mMonth
-                        sDay = mDay
-                        db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addListenerForSingleValueEvent(dataListener)
-                    }, year, month, day)
-
-                    dpd.show()
-                }
-
-
-                recyclerview.adapter = adapter
-
-                recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-
-                db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addValueEventListener(dataListener)
-
-
-
-            } catch (e: IOException){
-                //No Internet or Server down
-                Log.w("StreamsFragment", "Request couldn't be executed")
             }
-        }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists())
+                    adapter = HourAdapterAdmin()
+
+
+
+                place = context.intent.getSerializableExtra("place") as AreaInfoModel
+                text_address.text = place.address;
+                text_name.text = place.name;
+                Picasso.get().load(place.imageUrl).into(image_preview);
+
+
+
+                lifecycleScope.launch{
+                    try {
+
+                        val c = Calendar.getInstance()
+                        val year = c.get(Calendar.YEAR)
+                        val month = c.get(Calendar.MONTH)
+                        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+
+                        button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
+
+
+                        button_select_day.setOnClickListener {
+                            val dpd = DatePickerDialog(context, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+                                button_select_day.text = mDay.toString() + "/" + (mMonth + 1) + "/" + mYear
+                                sYear = mYear
+                                sMonth = mMonth
+                                sDay = mDay
+                                db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addListenerForSingleValueEvent(dataListener)
+                            }, year, month, day)
+
+                            dpd.show()
+                        }
+
+
+                        recyclerview.adapter = adapter
+
+                        recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+
+                        db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addValueEventListener(dataListener)
+
+
+
+                    } catch (e: IOException){
+                        //No Internet or Server down
+                        Log.w("StreamsFragment", "Request couldn't be executed")
+                    }
+                }
+            }
+        })
     }
 }

@@ -22,7 +22,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
-class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
+open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
 
     var elements = ArrayList<HourModel>()
     var date: String = ""
@@ -107,7 +107,8 @@ class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
         db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+    open fun forOnBindViewHolder(holder: ViewHolder, position: Int){
         val element = elements[position]
 
         holder.hour.text = element.start.toString() + "h"
@@ -159,8 +160,13 @@ class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
         }
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        forOnBindViewHolder(holder, position);
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val hour = itemView.text_hour
         val background = itemView.image_background
+        val context = itemView.context
     }
 }

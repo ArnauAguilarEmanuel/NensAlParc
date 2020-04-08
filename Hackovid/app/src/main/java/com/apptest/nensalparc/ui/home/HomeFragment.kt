@@ -18,6 +18,7 @@ import com.apptest.nensalparc.R
 import androidx.appcompat.app.AppCompatActivity;
 import com.apptest.nensalparc.AreaInfoModel
 import com.apptest.nensalparc.User
+import com.apptest.nensalparc.ui.share.PreviewFragmentAdmin
 import com.apptest.nensalparc.ui.share.ShareFragment
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.MarkerOptions
@@ -76,14 +77,28 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
 
                     //get the actual city
                     var place = places[it.title]!!
-                    ft?.replace(R.id.infoDisplay, ShareFragment(place))
-                    ft?.commit();
+                    db.child("Users").child(user.uId.toString()).child("admin").addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if(!dataSnapshot.exists())
+                                ft?.replace(R.id.infoDisplay, ShareFragment(place))
+                            else
+                                ft?.replace(R.id.infoDisplay, PreviewFragmentAdmin(place))
+
+                            ft?.commit();
 
 
-                    infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
-                    mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+                            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+                            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
 
-                    it.showInfoWindow();
+                            it.showInfoWindow();
+                        }
+
+                    })
+
                     true;
                 }
 

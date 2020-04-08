@@ -15,21 +15,5 @@
             android:title="@string/menu_reservation" />
     </group>
 
-    <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_info"
-                android:icon="@drawable/ic_info"
-                android:title="@string/menu_info" />
-            <item
-                android:id="@+id/nav_config"
-                android:icon="@drawable/ic_settings"
-                android:title="@string/menu_config" />
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/menu_logout" />
-        </menu>
-    </item>
 
 </menu>
