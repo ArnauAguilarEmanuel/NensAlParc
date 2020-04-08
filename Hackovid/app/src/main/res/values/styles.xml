@@ -1,123 +1,27 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Components-->
+
+    <!--Bottom Sheets-->
+    <style name="ThemeOverlay.MyTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyTheme.BottomSheet.Modal</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/Widget.MyTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+    <style name="Widget.MyTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">?attr/shapeAppearanceLargeComponent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!--Navigation Drawer-->
+    <style name="Widget.MyTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">97sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">61sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">48sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">34sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">24sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Body2" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textSize">10sp</item>
-    </style>
-    
 </resources>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
