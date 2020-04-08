@@ -60,7 +60,7 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.child("Places").children.forEach() {
-                    var place = AreaInfoModel(it.child("Name").value.toString(),it.child("Address").value.toString(),it.child("imageURL").value.toString())
+                    var place = AreaInfoModel(it.child("Name").value.toString(),it.child("Address").value.toString(),it.child("imageURL").value.toString(), it.key.toString())
                     places.put(place.name.toString(),place)
                     mMap.addMarker(
                         MarkerOptions().position(
