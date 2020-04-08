@@ -1,36 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    >
 
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nom complert"
-        android:id="@+id/inputName"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="DNI"
-        android:id="@+id/inputDNI"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Població"
-        android:id="@+id/inputLocation"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/registerButton"
-        android:text="Confirmar informació"
-        android:layout_gravity="center"></Button>
+        android:layout_margin="@dimen/default_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/verify_screen_info_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/registration_title"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginBottom="@dimen/button_top_margin_small"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="@dimen/button_top_margin"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_name_hint"
+            >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/inputFieldText"
+            android:digits="0123456789"
+            android:gravity="center"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_dni_hint"
+            android:layout_marginTop="@dimen/consecutive_items_margin_small"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputDNI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/inputFieldText"
+                android:digits="0123456789"
+                android:gravity="center"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_location_hint"
+            android:layout_marginTop="@dimen/consecutive_items_margin_small"
+            android:layout_marginBottom="@dimen/button_top_margin"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/inputFieldText"
+                android:digits="0123456789"
+                android:gravity="center"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registration_accept"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+</ScrollView>

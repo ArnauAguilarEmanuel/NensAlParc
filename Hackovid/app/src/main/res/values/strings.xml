@@ -22,4 +22,16 @@
 
 
     <string name="sign_in_phone_hint">Número de telèfon</string>
+
+    <string name="phone_verification_info">Escriu el codi que has rebut per SMS</string>
+    <string name="phone_verification_hint">Codi</string>
+    <string name="phone_verification_accept">Acceptar</string>
+    <string name="phone_verification_resend_info">No has rebut cap SMS?</string>
+    <string name="phone_verification_resend">Reenviar</string>
+
+    <string name="registration_title">Registra\'t</string>
+    <string name="registration_name_hint">Nom i Cognoms</string>
+    <string name="registration_dni_hint">DNI</string>
+    <string name="registration_location_hint">Població</string>
+    <string name="registration_accept">Confirmar informació</string>
 </resources>
