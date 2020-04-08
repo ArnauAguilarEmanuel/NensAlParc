@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="purple_200">#00CA9D</color> <!--Color primary (dark)-->
+    <color name="purple_500">#00CA9D</color> <!--Color primary (light)-->
+    <color name="purple_600">#009978</color> <!--Color primary variant (dark)-->
+    <color name="purple_700">#009978</color> <!--Color primary variant (light)-->
+
+    <color name="green_200">#F18939</color> <!--Color secondary-->
+    <color name="green_500">#d7650f</color> <!--Color secondary variant-->
+
+    <color name="red_200">#cf6679</color> <!--Color error (dark)-->
+    <color name="red_600">#b00020</color> <!--Color error (light)-->
+
+    <!--Color surface (light), color on error (light), -->
+    <!--color on surface (dark), color on surface (dark)-->
+    <color name="white_50">#ffffff</color>
+
+    <color name="black_800">#121212</color> <!--Color surface (dark)-->
+    <!--Color on secondary (light), color on background (light),-->
+    <!--color on surface (light)-->
+    <color name="black_900">#000000</color>
+
+    <color name="inputFieldBackground">#FBFAFF</color>
+    <color name="inputFieldIcon">#DAD9E2</color>
+    <color name="inputFieldText">#5F5D70</color>
+    <color name="buttonTextLight">#FFFFFF</color>
+
 </resources>
