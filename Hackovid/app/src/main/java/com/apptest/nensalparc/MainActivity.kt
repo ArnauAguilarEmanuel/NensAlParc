@@ -91,15 +91,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-
         val userPreferences = baseContext?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val userId = userPreferences?.getString("UserId", "")
 
         if(userId == ""){
 
-            val intent = Intent(this, SignInActivity::class.java).apply {
-            }
-            startActivity(intent)
+            //val intent = Intent(this, SignInActivity::class.java).apply {
+            //}
+            //startActivity(intent)
 
             return;
         }
