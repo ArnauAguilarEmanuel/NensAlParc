@@ -49,6 +49,83 @@ class PlaceActivity: AppCompatActivity() {
     }
     private val adapter = HourAdapter()
     val db = FirebaseDatabase.getInstance().reference;
+
+    var hours = ArrayList<HourModel>()
+    var peopleHours = mutableMapOf<Float, Int>()
+    fun refreshHours(dataSnapshot: DataSnapshot,sessionStart: Int, sessionEnd : Int, sessionDuration : Int, dayId: String ){
+        hours = ArrayList<HourModel>()
+        peopleHours = mutableMapOf<Float, Int>()
+        for (i in sessionStart..(sessionEnd - 1)){
+            for (j in 0..(60 / sessionDuration) - 1){
+                peopleHours.put(i + ((j*sessionDuration) / 100f), 0)
+            }
+        }
+
+
+        for (child in dataSnapshot.child("Reservations").child(dayId).children) {
+            peopleHours[child.value.toString().toFloat()] =
+                peopleHours[child.value.toString().toFloat()].toString().toInt() + 1
+        }
+    }
+
+    fun displayData(dataSnapshot: DataSnapshot,sessionStart: Int, sessionEnd : Int, sessionDuration : Int, maxCapacity: Int ){
+        for (i in sessionStart..(sessionEnd - 1)) {
+
+            hours.add(HourModel(i, ArrayList<TimeFractionModel>()))
+
+            for (j in 0..(60 / sessionDuration) - 1) {
+                hours[i - sessionStart].timeFractions?.add(
+                    TimeFractionModel(
+                        j * sessionDuration,
+                        sessionDuration,
+                        maxCapacity,
+                        peopleHours[i + ((j*sessionDuration) / 100f)]
+                    )
+                )
+            }
+
+        }
+
+        adapter.elements = hours
+        adapter.notifyDataSetChanged()
+    }
+    var dayId = ""
+    var sYear = 0
+    var sMonth = 0
+    var sDay = 0
+    var dataListener = object :
+            ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            var sessionEnd = dataSnapshot.child("End").value.toString().toInt()
+            var sessionStart = dataSnapshot.child("Start").value.toString().toInt()
+            var sessionDuration =
+                dataSnapshot.child("SessionDuration").value.toString().toInt()
+            var maxCapacity = dataSnapshot.child("MaxCapacity").value.toString().toInt()
+            val c = Calendar.getInstance()
+            var year = c.get(Calendar.YEAR)
+            var month = c.get(Calendar.MONTH)
+            var day = c.get(Calendar.DAY_OF_MONTH)
+            if(sYear!=0){
+                year = sYear
+                month = sMonth
+                day = sDay
+            }
+
+
+            dayId = day.toString() + "-" + (month + 1) + "-" + year
+
+            refreshHours(dataSnapshot, sessionStart, sessionEnd, sessionDuration, dayId)
+
+            displayData(dataSnapshot, sessionStart, sessionEnd, sessionDuration, maxCapacity)
+
+
+        }
+
+
+        override fun onCancelled(databaseError: DatabaseError) {
+        }
+    }
+
     fun initUi(){
 
         var context = this
@@ -72,85 +149,31 @@ class PlaceActivity: AppCompatActivity() {
                 val month = c.get(Calendar.MONTH)
                 val day = c.get(Calendar.DAY_OF_MONTH)
 
-                var dayId = day.toString() + "-" + (month + 1) + "-" + year
+
 
                 button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
+
 
                 button_select_day.setOnClickListener {
                     val dpd = DatePickerDialog(context, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
                         button_select_day.text = mDay.toString() + "/" + (mMonth + 1) + "/" + mYear
+                        sYear = mYear
+                        sMonth = mMonth
+                        sDay = mDay
+                        db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addListenerForSingleValueEvent(dataListener)
                     }, year, month, day)
+
                     dpd.show()
                 }
+
 
                 recyclerview.adapter = adapter
                 recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
+                db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addValueEventListener(dataListener)
 
-                db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addValueEventListener(object :
-                    ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var sessionEnd = dataSnapshot.child("End").value.toString().toInt()
-                        var sessionStart = dataSnapshot.child("Start").value.toString().toInt()
-                        var sessionDuration = dataSnapshot.child("SessionDuration").value.toString().toInt()
-                        var maxCapacity = dataSnapshot.child("MaxCapacity").value.toString().toInt()
 
-                        dayId = day.toString() + "-" + (month + 1) + "-" + year
-
-                        val hours = ArrayList<HourModel>()
-                        var peopleHours = mutableMapOf<Float, Int>()
-                        for (i in sessionStart .. (sessionEnd-1))
-                            //peopleHours.put(i,0)
-
-                        for (child in dataSnapshot.child("Reservations").child(dayId).children) {
-                            var data = peopleHours[child.value.toString().toFloat()].toString().toInt()
-                            peopleHours[child.value.toString().toFloat()] = data+1
-                        }
-
-                        for (i in sessionStart .. (sessionEnd-1)){
-
-                            hours.add(HourModel(i, ArrayList<TimeFractionModel>()))
-
-                            for(j in 0 .. (60/sessionDuration)- 1){
-                                hours[i-sessionStart].timeFractions?.add(TimeFractionModel(j*sessionDuration,sessionDuration,maxCapacity,2))
-                            }
-
-                        }
-
-                        adapter.elements = hours
-                        adapter.notifyDataSetChanged()
-
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                    }
-                })
-
-                //hours.add(HourModel(9, ArrayList<TimeFractionModel>()))
-                //hours[0].timeFractions?.add(TimeFractionModel(0, 15, 10, 2))
-                //hours[0].timeFractions?.add(TimeFractionModel(15, 15, 8, 5))
-                //hours[0].timeFractions?.add(TimeFractionModel(30, 15, 10, 2))
-                //hours[0].timeFractions?.add(TimeFractionModel(45, 15, 6, 4))
-
-                //hours.add(HourModel(10, ArrayList<TimeFractionModel>()))
-                //hours[1].timeFractions?.add(TimeFractionModel(0, 15, 10, 2))
-                //hours[1].timeFractions?.add(TimeFractionModel(15, 15, 10, 2))
-                //hours[1].timeFractions?.add(TimeFractionModel(30, 15, 10, 2))
-                //hours[1].timeFractions?.add(TimeFractionModel(45, 15, 10, 2))
-
-                //hours.add(HourModel(11, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(12, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(13, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(14, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(15, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(16, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(17, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(18, ArrayList<TimeFractionModel>()))
-                //hours.add(HourModel(19, ArrayList<TimeFractionModel>()))
-
-                //adapter.elements = hours
-                //adapter.notifyDataSetChanged()
 
             } catch (e: IOException){
                 //No Internet or Server down
