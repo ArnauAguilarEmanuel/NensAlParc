@@ -72,6 +72,8 @@ class PlaceActivity: AppCompatActivity() {
                 val month = c.get(Calendar.MONTH)
                 val day = c.get(Calendar.DAY_OF_MONTH)
 
+                var dayId = day.toString() + "-" + (month + 1) + "-" + year
+
                 button_select_day.text = day.toString() + "/" + (month + 1) + "/" + year
 
                 button_select_day.setOnClickListener {
@@ -94,7 +96,17 @@ class PlaceActivity: AppCompatActivity() {
                         var sessionDuration = dataSnapshot.child("SessionDuration").value.toString().toInt()
                         var maxCapacity = dataSnapshot.child("MaxCapacity").value.toString().toInt()
 
+                        dayId = day.toString() + "-" + (month + 1) + "-" + year
+
                         val hours = ArrayList<HourModel>()
+                        var peopleHours = mutableMapOf<Float, Int>()
+                        for (i in sessionStart .. (sessionEnd-1))
+                            //peopleHours.put(i,0)
+
+                        for (child in dataSnapshot.child("Reservations").child(dayId).children) {
+                            var data = peopleHours[child.value.toString().toFloat()].toString().toInt()
+                            peopleHours[child.value.toString().toFloat()] = data+1
+                        }
 
                         for (i in sessionStart .. (sessionEnd-1)){
 

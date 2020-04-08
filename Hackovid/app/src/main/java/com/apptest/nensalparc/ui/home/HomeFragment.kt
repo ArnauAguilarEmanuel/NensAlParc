@@ -46,6 +46,7 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
 
     var latLngs = arrayOf<LatLng>(LatLng(-33.852, 151.211), LatLng(33.852, -151.211), LatLng(-33.852, -151.211))
     override fun onMapReady(googleMap: GoogleMap) {
+        if(user.uId == "") return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             infoDisplay.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
             mapContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
