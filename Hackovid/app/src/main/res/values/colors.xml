@@ -6,6 +6,8 @@
     <color name="purple_600">#009978</color> <!--Color primary variant (dark)-->
     <color name="purple_700">#009978</color> <!--Color primary variant (light)-->
 
+    <color name="fade_end">#33ffd3</color>
+
     <color name="green_200">#F18939</color> <!--Color secondary-->
     <color name="green_500">#d7650f</color> <!--Color secondary variant-->
 

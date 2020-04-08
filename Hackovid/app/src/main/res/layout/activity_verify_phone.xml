@@ -35,9 +35,9 @@
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/inputFieldText"
                 android:digits="0123456789"
                 android:gravity="center"
+                android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +72,12 @@
             android:layout_height="wrap_content"
             android:text="@string/phone_verification_resend"
             android:backgroundTint="@color/green_200"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            />
 
     </LinearLayout>
 </ScrollView>

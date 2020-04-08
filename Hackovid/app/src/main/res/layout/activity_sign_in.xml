@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="@dimen/title_screen_title_margin_bottom"
             android:fontFamily="@font/montserrat"
             android:gravity="center_horizontal"
@@ -48,7 +48,7 @@
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/inputFieldText"
+                    android:inputType="number"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,6 +61,13 @@
             android:text="Autenticarse"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/button_top_margin_large"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            />
 
     </LinearLayout>
 </ScrollView>

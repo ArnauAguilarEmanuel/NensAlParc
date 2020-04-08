@@ -13,7 +13,7 @@
     <dimen name="button_top_margin_large">40dp</dimen>
 
     <!--  Title screen dimens  -->
-    <dimen name="title_screen_title_margin_bottom">140dp</dimen>
+    <dimen name="title_screen_title_margin_bottom">80dp</dimen>
     <dimen name="title_screen_spinner_width">120dp</dimen>
 
     <!--  Title screen dimens  -->
