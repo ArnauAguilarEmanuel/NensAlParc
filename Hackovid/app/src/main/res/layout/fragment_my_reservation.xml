@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_preview"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                />
+            <LinearLayout
+                android:background="@mipmap/gradient"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/text_reservation_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/place_info_screen_title_margin_left"
+                    android:textSize="25sp"
+                    android:textColor="@color/inputFieldBackground"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:text="Parc exemple"
+                    />
+
+                <TextView
+                    android:id="@+id/text_reservation_address"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/place_info_screen_title_margin_left"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/inputFieldIcon"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:text="C/ PASCUAL 28"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_reservation_image"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_marginLeft="16dp"
+            android:text="Reserva pel dia:"
+            android:gravity="left"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_reservation_date"
+            android:textSize="25dp"
+            android:text="11/34/2060"
+            android:gravity="left"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_reservation_hour"
+                android:textSize="20dp"
+                android:text="16:00"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/durant"
+                android:textSize="20dp"
+                android:text="fins a:"
+                android:layout_marginHorizontal="7dp"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_reservation_hour_end"
+                android:textSize="20dp"
+                android:text="16:00"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                />
+
+        </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:gravity="bottom">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="@string/my_reservation_cancel"
+        android:id="@+id/my_reservation_cancel"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_reservation_request"
+        android:textSize="13dp"
+        android:text="Demanat el dia A a les B"
+
+        android:gravity="center_horizontal|bottom"
+        android:layout_gravity="center_horizontal|bottom"
+        />
+</LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Nens Al Parc</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_map">Mapa</string>
+    <string name="menu_reservation">La meva reserva</string>
+    <string name="menu_info">Informació</string>
+    <string name="menu_config">Configuració</string>
+    <string name="menu_logout">Tancar Sessió</string>
+    <string name="my_reservation_cancel">Cancel·lar reserva</string>
+
+    <string name="navigation_view_more_options">Més opcions</string>
+
+    <string name="reservation_make_reservation">Reservar></string>
+
+    <string name="google_maps_key">AIzaSyAxguhizbLa_WwidSpo7F7e1r55JEcorTU</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="sign_in_phone_hint">Número de telèfon</string>
+
+    <string name="phone_verification_info">Escriu el codi que has rebut per SMS</string>
+    <string name="phone_verification_hint">Codi</string>
+    <string name="phone_verification_accept">Acceptar</string>
+    <string name="phone_verification_resend_info">No has rebut cap SMS?</string>
+    <string name="phone_verification_resend">Reenviar</string>
+
+    <string name="registration_title">Registra\'t</string>
+    <string name="registration_name_hint">Nom i Cognoms</string>
+    <string name="registration_dni_hint">DNI</string>
+    <string name="registration_location_hint">\tPoblació</string>
+    <string name="registration_accept">Confirmar informació</string>
+
+    <string name="place_info_make_reservation">Reservar hora</string>
+    <string name="place_info_view_assistants">Veure asistents</string>
+
+    <string name="configuration_admin_info">
+        El perfil d\'usuari permet reservar franjes horàries per anar amb el seu/s fill/s.
+        \nEl perfil d\'administrador permet veure quines persones han reservat una franja horària i el seu DNI.
+        \nTot i que el perfil d\'administrador està pensat únicament per autoritats com Policia, Ajuntaments, Generalitat...
+        \nEn aquesta versió tots els usuaris poden canviar els permisos per fer tant d\'usuari com d\'administrador.
+        \n\nAquesta característica (canviar els permissos des de dins la app) NO estarà a la versió final.
+        \n\n\nNens Al Parc
+        </string>
+    <string name="configuration_admin_label">Permisos d\'administrador</string>
+</resources>
