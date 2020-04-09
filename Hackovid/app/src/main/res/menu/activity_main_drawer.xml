@@ -20,14 +20,17 @@
         <menu>
             <item
                 android:id="@+id/nav_info"
+                android:enabled="false"
                 android:icon="@drawable/ic_info"
                 android:title="@string/menu_info" />
             <item
                 android:id="@+id/nav_config"
+                android:enabled="true"
                 android:icon="@drawable/ic_settings"
                 android:title="@string/menu_config" />
             <item
                 android:id="@+id/nav_logout"
+                android:enabled="false"
                 android:icon="@drawable/ic_logout"
                 android:title="@string/menu_logout" />
         </menu>

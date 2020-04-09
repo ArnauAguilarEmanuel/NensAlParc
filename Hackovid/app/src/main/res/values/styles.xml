@@ -14,6 +14,7 @@
         <item name="bottomSheetStyle">@style/Widget.MyTheme.BottomSheet.Modal</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
     </style>
     <style name="Widget.MyTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="shapeAppearanceOverlay">?attr/shapeAppearanceLargeComponent</item>
@@ -23,5 +24,7 @@
     <style name="Widget.MyTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
         <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
     </style>
+
+
 
 </resources>

@@ -20,15 +20,15 @@
 
     <fragment
         android:id="@+id/nav_info"
-        android:name="com.apptest.nensalparc.ui.share.ShareFragment"
+        android:name="com.apptest.nensalparc.ui.tools.ToolsFragment"
         android:label="@string/menu_info"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_config"
-        android:name="com.apptest.nensalparc.ui.send.PlaceActivity"
+        android:name="com.apptest.nensalparc.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_config"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_logout"
