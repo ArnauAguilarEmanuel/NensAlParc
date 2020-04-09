@@ -1,33 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:theme="@style/Theme.MyApp"
-    android:background="@drawable/side_nav_bar">
+    >
 
-<!--  @string/nav_header_title
-    @string/nav_header_subtitle
-  -->
-    <TextView
+    <!--  @string/nav_header_title
+        @string/nav_header_subtitle
+      -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Ignasi Pelayo Justicia"
-        android:id="@+id/userName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:layout_height="match_parent"
+        android:background="@drawable/side_nav_bar"
+        android:alpha="0.2">
 
-    <TextView
-        android:id="@+id/dni"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="33883283M"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="Ignasi Pelayo Justicia"
+            android:id="@+id/userName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            />
+
+        <TextView
+            android:id="@+id/dni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="49717225B"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:alpha="1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="@dimen/button_top_margin"
+            android:alpha="1"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
