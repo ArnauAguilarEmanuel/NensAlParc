@@ -223,6 +223,17 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
 
 
                                 }
+                            }else{
+                                val builder = AlertDialog.Builder(fullcontext)
+                                builder.setTitle("Ja tens una reserva")
+                                builder.setMessage("Vols canviar-la per aquesta?")
+                                builder.setPositiveButton("Si",{ i, Int ->
+                                    db.child("Locations").child(user.location.toString()).child("Places").child(dataSnapshot.child("placeID").value.toString()).child("SessionData")
+                                        .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
+                                    makeReservation(element);
+                                })
+                                builder.setNegativeButton("No",{ i, Int ->})
+                                builder.show()
                             }
                         }else{
                             val builder = AlertDialog.Builder(fullcontext)

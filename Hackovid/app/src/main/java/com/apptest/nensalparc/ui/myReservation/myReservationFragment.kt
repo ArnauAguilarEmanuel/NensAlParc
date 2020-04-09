@@ -14,7 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_reservation.*
+import kotlinx.android.synthetic.main.fragment_my_reservation.image_preview
+import kotlinx.android.synthetic.main.fragment_share.*
 import java.util.*
 
 class myReservationFragment : Fragment(){
@@ -90,9 +93,8 @@ class myReservationFragment : Fragment(){
                     my_reservation_cancel.visibility = View.VISIBLE
                     text_reservation_address.visibility = View.VISIBLE
                     text_reservation_date.visibility = View.VISIBLE
-                    text_reservation_date_end.visibility = View.VISIBLE
+                    text_reservation_hour_end.visibility = View.VISIBLE
                     text_reservation_request.visibility = View.VISIBLE
-                    reserva.visibility = View.VISIBLE
                     durant.visibility = View.VISIBLE
 
                     my_reservation_cancel.setOnClickListener({
@@ -103,9 +105,8 @@ class myReservationFragment : Fragment(){
                         my_reservation_cancel.visibility = View.GONE
                         text_reservation_address.visibility = View.GONE
                         text_reservation_date.visibility = View.GONE
-                        text_reservation_date_end.visibility = View.GONE
+                        text_reservation_hour_end.visibility = View.GONE
                         text_reservation_request.visibility = View.GONE
-                        reserva.visibility = View.GONE
                         durant.visibility = View.GONE
                         text_reservation_name.text = "Reserva Cancelada"
                     })
@@ -117,18 +118,44 @@ class myReservationFragment : Fragment(){
                     }else{
                         text_reservation_name.text = dataSnapshot.child("name").value.toString()
                         text_reservation_address.text = dataSnapshot.child("address").value.toString()
-                        text_reservation_date.text = dataSnapshot.child("reservedDate").value.toString().replace("-","/") +"\t" + dataSnapshot.child("reservedHour").value.toString().replace(".",":")
-                        text_reservation_date_end.text = dataSnapshot.child("duration").value.toString() + " minuts"
-                        text_reservation_request.text = "Reserva realitzada el dia "+dataSnapshot.child("reservationDate").value.toString().replace("-","/")+ " a les "+dataSnapshot.child("reservationHour").value.toString().replace(".",":")
+                        text_reservation_date.text = dataSnapshot.child("reservedDate").value.toString().replace("-","/")
+
+                        var finishTextData = dataSnapshot.child("reservedHour").value.toString().split(".")
+                        var fHour = ""
+                        var fMin = finishTextData[1]
+                        if(fMin.length==1) {
+                            fMin+="0"
+                        }
+                        var initialMin = fMin
+                        var minInt = fMin.toInt()+ dataSnapshot.child("duration").value.toString().toInt();
+                        if(minInt>= 60){
+                            fMin ="00"
+                            fHour = (finishTextData[0].toInt()+1).toString()
+                        }else{
+                            fHour = finishTextData[0]
+                            fMin = minInt.toString()
+                        }
+
+                        if(initialMin.length==1)initialMin+="0"
+                        text_reservation_hour.text = fHour+":"+initialMin
+                        text_reservation_hour_end.text = fHour+":"+fMin
+                        var horaReserva = dataSnapshot.child("reservationHour").value.toString().split(":")
+                        var horaReservaText = horaReserva[0]+":"+horaReserva[1]
+
+                        if(horaReserva[1].length==1)horaReservaText+="0"
+
+                        Picasso.get().load(dataSnapshot.child("imageUrl").value.toString()).into(image_preview);
+
+
+                        text_reservation_request.text = "Reserva realitzada el dia "+dataSnapshot.child("reservationDate").value.toString().replace("-","/")+ " a les "+horaReservaText
                     }
 
                 }else{
                     my_reservation_cancel.visibility = View.GONE
                     text_reservation_address.visibility = View.GONE
                     text_reservation_date.visibility = View.GONE
-                    text_reservation_date_end.visibility = View.GONE
+                    text_reservation_hour_end.visibility = View.GONE
                     text_reservation_request.visibility = View.GONE
-                    reserva.visibility = View.GONE
                     durant.visibility = View.GONE
                     text_reservation_name.text = "No tens cap reserva activa"
 
