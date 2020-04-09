@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity() {
         val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
         ActivityCompat.requestPermissions(this, permissions,0)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -47,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_map,
-                R.id.nav_reservation, R.id.nav_info, R.id.nav_config,
-                R.id.nav_logout
+            setOf(
+                R.id.nav_map,
+                R.id.nav_reservation
             ), drawerLayout
         )
 
@@ -96,9 +91,9 @@ class MainActivity : AppCompatActivity() {
 
         if(userId == ""){
 
-            val intent = Intent(this, SignInActivity::class.java).apply {
-            }
-            startActivity(intent)
+            //val intent = Intent(this, SignInActivity::class.java).apply {
+            //}
+            //startActivity(intent)
 
             return;
         }
