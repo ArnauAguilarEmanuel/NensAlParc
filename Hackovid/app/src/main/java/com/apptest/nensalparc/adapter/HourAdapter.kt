@@ -2,6 +2,7 @@ package com.apptest.nensalparc.adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.ColorSpace
@@ -193,7 +194,7 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                             var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
                             if(datePassed(reservedDate, reservedHour, dataSnapshot.child("duration").value.toString().toInt())){
                                 if(element.currentCapacity != element.maxCapacity){
-                                    val builder = AlertDialog.Builder(fullcontext)
+                                    val builder = AlertDialog.Builder(fullcontext,R.style.AlertDialogTheme)
                                     builder.setTitle("Confirmar reserva?")
 
                                     holder.button.text = element.currentCapacity.toString() + "/" + element.maxCapacity.toString()
@@ -216,7 +217,10 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                                         makeReservation(element);
                                     })
                                     builder.setNegativeButton("Cancelar",{ i, Int ->})
+
+
                                     builder.show()
+
 
                                 }
                             }

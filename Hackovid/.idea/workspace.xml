@@ -39,16 +39,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_timefraction_button.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="100" column="41" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="41" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_share.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -58,7 +48,7 @@
           <provider editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_preview_adment.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
@@ -85,11 +75,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="176" column="43" lean-forward="true" selection-start-line="176" selection-start-column="43" selection-end-line="176" selection-end-column="43" />
+            <state relative-caret-position="278">
+              <caret line="196" column="99" selection-start-line="196" selection-start-column="99" selection-end-line="196" selection-end-column="99" />
               <folding>
                 <element signature="e#40#1023#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/themes.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/shape.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -117,28 +126,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/widget/ImageView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="1681" column="16" selection-start-line="1681" selection-start-column="16" selection-end-line="1681" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
               <caret line="31" column="37" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/TimeFraction.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -185,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Resources/CountryCodes.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml" />
@@ -233,9 +223,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_timefraction_button.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapterAdmin.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_share.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_preview_adment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/shape.xml" />
       </list>
     </option>
   </component>
@@ -347,6 +338,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="NensAlParc" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="themes" type="c431d0b8:AndroidResGroupNode" />
             </path>
             <path>
               <item name="NensAlParc" type="1abcf292:AndroidViewProjectNode" />
@@ -597,7 +595,7 @@
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Assistant" order="5" weight="0.3298887" />
-      <window_info anchor="right" id="Preview" order="6" visible="true" weight="0.3298887" />
+      <window_info anchor="right" id="Preview" order="6" weight="0.3298887" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -663,42 +661,42 @@
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>146</line>
+          <line>147</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>148</line>
+          <line>149</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>150</line>
+          <line>151</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>152</line>
+          <line>153</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>154</line>
+          <line>155</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>144</line>
+          <line>145</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
@@ -715,14 +713,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="88" column="42" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/ParticipantsAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/DisplayParticipatsActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -847,9 +837,6 @@
           <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/raw/style_dark.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -991,16 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="176" column="43" lean-forward="true" selection-start-line="176" selection-start-column="43" selection-end-line="176" selection-end-column="43" />
-          <folding>
-            <element signature="e#40#1023#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1029,6 +1006,29 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/themes.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="196" column="99" selection-start-line="196" selection-start-column="99" selection-end-line="196" selection-end-column="99" />
+          <folding>
+            <element signature="e#40#1023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/shape.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
