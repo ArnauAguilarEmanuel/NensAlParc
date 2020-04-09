@@ -37,4 +37,14 @@
 
     <string name="place_info_make_reservation">Reservar hora</string>
     <string name="place_info_view_assistants">Veure asistents</string>
+
+    <string name="configuration_admin_info">
+        El perfil d\'usuari permet reservar franjes horàries per anar amb el seu/s fill/s.
+        \nEl perfil d\'administrador permet veure quines persones han reservat una franja horària i el seu DNI.
+        \nTot i que el perfil d\'administrador està pensat únicament per autoritats com Policia, Ajuntaments, Generalitat...
+        \nEn aquesta versió tots els usuaris poden canviar els permisos per fer tant d\'usuari com d\'administrador.
+        \n\nAquesta característica (canviar els permissos des de dins la app) NO estarà a la versió final.
+        \n\n\nNens Al Parc
+        </string>
+    <string name="configuration_admin_label">Permisos d\'administrador</string>
 </resources>

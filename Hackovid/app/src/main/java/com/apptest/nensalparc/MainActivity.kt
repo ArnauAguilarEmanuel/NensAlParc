@@ -45,7 +45,10 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_map,
-                R.id.nav_reservation
+                R.id.nav_reservation,
+                R.id.nav_info,
+                R.id.nav_config,
+                R.id.nav_logout
             ), drawerLayout
         )
 
@@ -109,9 +112,9 @@ class MainActivity : AppCompatActivity() {
 
         if(userId == ""){
 
-            val intent = Intent(this, SignInActivity::class.java).apply {
-            }
-            startActivity(intent)
+            //val intent = Intent(this, SignInActivity::class.java).apply {
+            //}
+            //startActivity(intent)
 
             return;
         }
