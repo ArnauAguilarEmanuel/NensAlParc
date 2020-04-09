@@ -91,9 +91,9 @@ class MainActivity : AppCompatActivity() {
 
         if(userId == ""){
 
-            //val intent = Intent(this, SignInActivity::class.java).apply {
-            //}
-            //startActivity(intent)
+            val intent = Intent(this, SignInActivity::class.java).apply {
+            }
+            startActivity(intent)
 
             return;
         }

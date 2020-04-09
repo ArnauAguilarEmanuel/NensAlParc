@@ -23,7 +23,7 @@
     <dimen name="verify_screen_resend_margin">100dp</dimen>
 
     <!--  Place info screen dimens  -->
-    <dimen name="place_info_screen_preview_height">220dp</dimen>
+    <dimen name="place_info_screen_preview_height">215dp</dimen>
     <dimen name="place_info_screen_title_margin_top">20dp</dimen>
     <dimen name="place_info_screen_title_margin_left">20dp</dimen>
 

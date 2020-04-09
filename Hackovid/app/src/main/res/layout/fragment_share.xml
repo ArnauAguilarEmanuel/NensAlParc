@@ -10,8 +10,11 @@
     android:layout_gravity="bottom"
     >
 
+
     <ImageView
+        android:layout_marginTop="5dp"
         android:id="@+id/image_preview"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/place_info_screen_preview_height"
         />
@@ -26,7 +29,8 @@
             android:id="@+id/text_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/place_info_screen_title_margin_top"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginStart="@dimen/place_info_screen_title_margin_left"
             android:layout_marginEnd="@dimen/place_info_screen_title_margin_left"
             android:textSize="25sp"
