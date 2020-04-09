@@ -22,17 +22,19 @@ import java.sql.Timestamp
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
 
-    var elements = ArrayList<HourModel>()
+    var elements = ArrayList<TimeFractionModel>()
     var date: String = ""
     var user: User = User()
     var place: AreaInfoModel = AreaInfoModel()
     val db = FirebaseDatabase.getInstance().reference;
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_timefraction_background, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_timefraction_button, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -113,19 +115,19 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
     open fun forOnBindViewHolder(holder: ViewHolder, position: Int){
         val element = elements[position]
 
-        holder.hour.text = element.start.toString() + "h"
+        //holder.hour.text = element.start.toString() + "h"
 
-        Log.i("FRACTION", element.timeFractions?.count().toString())
 
-        holder.background.removeAllViews()
+
 
         var i = 1020
-        element.timeFractions?.forEach {
-            var fraction = it;
-            var inflatedLayout = LayoutInflater.from(holder.background.context).inflate(R.layout.item_timefraction_button, holder.background, true)
-            inflatedLayout.button_timefraction.text = it.currentCapacity.toString() + "/" + it.maxCapacity.toString()
+            holder.button.text = element.currentCapacity.toString() + "/" + element.maxCapacity.toString()
+            var textData = element.start.toString().split(".")
+            var min = textData[1]
+            if(min.length==1) min+="0"
+            holder.endTime.text = textData[0]+":"+min
 
-            inflatedLayout.button_timefraction.setOnClickListener(){
+            holder.button.setOnClickListener(){
                 val c = Calendar.getInstance()
                 val hour = c.get(Calendar.HOUR_OF_DAY)
                 val minute = c.get(Calendar.MINUTE)
@@ -137,18 +139,18 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                     }
 
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var hour = fraction.start.toString().split(".")
+                        var hour = element.start.toString().split(".")
                         if(!datePassed(parseDate(date,"-"), DateHolder(hour[0].toInt(), hour[1].toInt(),0),0)){
                             if(dataSnapshot.exists()){
                                 var reservedDate = parseDate(dataSnapshot.child("reservedDate").value.toString(),"-")
                                 var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
                                 if(datePassed(reservedDate, reservedHour, dataSnapshot.child("duration").value.toString().toInt())){
-                                    if(fraction.currentCapacity != fraction.maxCapacity){
-                                        makeReservation(fraction);
+                                    if(element.currentCapacity != element.maxCapacity){
+                                        makeReservation(element);
                                     }
                                 }
                             }else{
-                                makeReservation(fraction);
+                                makeReservation(element);
                             }
                         }
                     }
@@ -156,10 +158,9 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                 })
 
             }
-            inflatedLayout.button_timefraction.id = i
+
             i++
 
-        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -168,8 +169,8 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val hour = itemView.text_hour
-        val background = itemView.image_background
+        val endTime = itemView.endTime
+        val button = itemView.button_timefraction
         val context = itemView.context
     }
 }

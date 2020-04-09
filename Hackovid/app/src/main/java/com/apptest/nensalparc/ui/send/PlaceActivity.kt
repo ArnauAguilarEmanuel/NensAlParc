@@ -58,10 +58,10 @@ class PlaceActivity: AppCompatActivity() {
     private var adapter = HourAdapter()
     val db = FirebaseDatabase.getInstance().reference;
 
-    var hours = ArrayList<HourModel>()
+    var hours = ArrayList<TimeFractionModel>()
     var peopleHours = mutableMapOf<Float, Int>()
     fun refreshHours(dataSnapshot: DataSnapshot,sessionStart: Int, sessionEnd : Int, sessionDuration : Int, dayId: String ){
-        hours = ArrayList<HourModel>()
+        hours = ArrayList<TimeFractionModel>()
         peopleHours = mutableMapOf<Float, Int>()
         for (i in sessionStart..(sessionEnd - 1)){
             for (j in 0..(60 / sessionDuration) - 1){
@@ -80,10 +80,9 @@ class PlaceActivity: AppCompatActivity() {
     fun displayData(dataSnapshot: DataSnapshot,sessionStart: Int, sessionEnd : Int, sessionDuration : Int, maxCapacity: Int ){
         for (i in sessionStart..(sessionEnd - 1)) {
 
-            hours.add(HourModel(i, ArrayList<TimeFractionModel>()))
 
             for (j in 0..(60 / sessionDuration) - 1) {
-                hours[i - sessionStart].timeFractions?.add(
+                hours.add(
                     TimeFractionModel(
                         (i + ((j*sessionDuration) / 100f)).round(2),
                         sessionDuration,
@@ -194,7 +193,7 @@ class PlaceActivity: AppCompatActivity() {
 
                         recyclerview.adapter = adapter
 
-                        recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
 
                         db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").addValueEventListener(dataListener)

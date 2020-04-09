@@ -22,6 +22,8 @@ class ShareFragment(var info: AreaInfoModel) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         shareViewModel =
             ViewModelProviders.of(this).get(ShareViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_share, container, false)

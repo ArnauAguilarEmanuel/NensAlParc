@@ -1,7 +1,9 @@
 package com.apptest.nensalparc
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,8 +18,10 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.apptest.nensalparc.ui.SignInActivity
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -31,9 +35,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
-        ActivityCompat.requestPermissions(this, permissions,0)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -81,6 +82,23 @@ class MainActivity : AppCompatActivity() {
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Log.i("Hello","asldfaj;sldfj;asd")
+            val intent = Intent(this, MainActivity::class.java).apply {
+            }
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+
+        }
+        else{
+            Toast.makeText(this, "Aquests permisos són necesaris pel funcionament de la app", Toast.LENGTH_LONG).show()
+            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            ActivityCompat.requestPermissions(this, permissions,0)
+        }
     }
 
     override fun onResume() {

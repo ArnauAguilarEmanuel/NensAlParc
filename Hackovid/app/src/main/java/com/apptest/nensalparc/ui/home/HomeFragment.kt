@@ -1,23 +1,33 @@
 package com.apptest.nensalparc.ui.home
 
+import android.Manifest
 import android.animation.Animator
 import android.animation.LayoutTransition
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Debug
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.apptest.nensalparc.R
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.apptest.nensalparc.AreaInfoModel
+import com.apptest.nensalparc.MainActivity
 import com.apptest.nensalparc.User
+import com.apptest.nensalparc.ui.SignInActivity
 import com.apptest.nensalparc.ui.share.PreviewFragmentAdmin
 import com.apptest.nensalparc.ui.share.ShareFragment
 import com.google.android.gms.maps.*
@@ -44,85 +54,95 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
     var latLngs = arrayOf<LatLng>(LatLng(-33.852, 151.211), LatLng(33.852, -151.211), LatLng(-33.852, -151.211))
     override fun onMapReady(googleMap: GoogleMap) {
         if(user.uId == "") return;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            infoDisplay.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
-            mapContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
-        }
         mMap = googleMap
-        mMap.setMyLocationEnabled(true)
+        if (ContextCompat.checkSelfPermission(this.requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
 
-        db.child("Locations").child(user.location.toString()).addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            ActivityCompat.requestPermissions(this.requireActivity(), permissions,0)
+
+        }else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                infoDisplay.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
+                mapContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING)
             }
 
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataSnapshot.child("Places").children.forEach() {
-                    var place = AreaInfoModel(it.child("Name").value.toString(),it.child("Address").value.toString(),it.child("imageURL").value.toString(), it.key.toString())
-                    places.put(place.name.toString(),place)
-                    mMap.addMarker(
-                        MarkerOptions().position(
-                            LatLng(it.child("LatitudeLongitude").child("Lat").value.toString().toDouble(),
-                                it.child("LatitudeLongitude").child("Long").value.toString().toDouble()
-                            )
-                        ).title(it.child("Name").value.toString())
+            mMap.setMyLocationEnabled(true)
 
-                    )
+            db.child("Locations").child(user.location.toString()).addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
-                mMap.setOnMarkerClickListener{
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    dataSnapshot.child("Places").children.forEach() {
+                        var place = AreaInfoModel(it.child("Name").value.toString(), it.child("Address").value.toString(), it.child("imageURL").value.toString(), it.key.toString())
+                        places.put(place.name.toString(), place)
+                        mMap.addMarker(
+                            MarkerOptions().position(
+                                LatLng(it.child("LatitudeLongitude").child("Lat").value.toString().toDouble(),
+                                    it.child("LatitudeLongitude").child("Long").value.toString().toDouble()
+                                )
+                            ).title(it.child("Name").value.toString())
+
+                        )
+                    }
+
+                    mMap.setOnMarkerClickListener {
 
 
-                    var ft = fragmentManager?.beginTransaction();
+                        var ft = fragmentManager?.beginTransaction();
 
-                    //get the actual city
-                    var place = places[it.title]!!
-                    db.child("Users").child(user.uId.toString()).child("admin").addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
+                        //get the actual city
+                        var place = places[it.title]!!
+                        db.child("Users").child(user.uId.toString()).child("admin").addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError) {
 
-                        }
+                            }
 
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if(!dataSnapshot.exists())
-                                ft?.replace(R.id.infoDisplay, ShareFragment(place))
-                            else
-                                ft?.replace(R.id.infoDisplay, PreviewFragmentAdmin(place))
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                if (!dataSnapshot.exists())
+                                    ft?.replace(R.id.infoDisplay, ShareFragment(place))
+                                else
+                                    ft?.replace(R.id.infoDisplay, PreviewFragmentAdmin(place))
 
-                            ft?.commit();
+                                ft?.commit();
 
 
-                            infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
-                            mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,50f)
+                                infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 50f)
+                                mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 50f)
 
-                            it.showInfoWindow();
-                        }
+                                it.showInfoWindow();
+                            }
 
-                    })
+                        })
 
-                    true;
+                        true;
+                    }
+
+                    mMap.setOnMapClickListener {
+                        infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0f)
+                        mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 100f)
+                    }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(
+                        dataSnapshot.child("LatitudeLongitude").child("Lat").value as Double,
+                        dataSnapshot.child("LatitudeLongitude").child("Long").value as Double
+
+                    )))
+
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+
                 }
-
-                mMap.setOnMapClickListener {
-                    infoDisplay.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,0f)
-                    mapContainer.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,100f)
-                }
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(
-                    dataSnapshot.child("LatitudeLongitude").child("Lat").value as Double,
-                    dataSnapshot.child("LatitudeLongitude").child("Long").value as Double
-
-                )))
-
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
-
-            }
-        });
-
-
+            });
+        }
 
 
 
     }
+
+
 
     private lateinit var homeViewModel: HomeViewModel
     lateinit var user : User;

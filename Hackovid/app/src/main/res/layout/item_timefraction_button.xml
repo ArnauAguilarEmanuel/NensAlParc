@@ -4,17 +4,52 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="90dp"
     android:orientation="vertical"
     android:layout_weight="1"
     >
 
-    <Button
-        android:id="@+id/button_timefraction"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        />
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_timefraction"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@android:color/transparent"
+            android:backgroundTint="#00FFFFFF"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/inputFieldText"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/endTime"
+                android:layout_gravity="top"
+                android:textAlignment="gravity"
+                android:textSize="25dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="21:00"/>
+
+
+        </FrameLayout>
+
+
+
+
+    </RelativeLayout>
+
+
 
 
 </LinearLayout>
