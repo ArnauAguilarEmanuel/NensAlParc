@@ -44,11 +44,11 @@ class HourAdapterAdmin : HourAdapter(){
             inflatedLayout.button_timefraction.text = it.currentCapacity.toString() + "/" + it.maxCapacity.toString()
 
             inflatedLayout.button_timefraction.setOnClickListener(){
-                it.setBackgroundColor(Color.RED)
                 val intent = Intent(holder.context, DisplayParticipatsActivity::class.java).apply {
                     putExtra("place", place)
                     putExtra("hour",fraction.start)
                     putExtra("date",date)
+                    putExtra("fractionDuration",fraction.duration)
                 }
                 holder.context.startActivity(intent)
             }
