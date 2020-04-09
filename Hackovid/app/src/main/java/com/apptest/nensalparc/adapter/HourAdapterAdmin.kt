@@ -1,5 +1,6 @@
 package com.apptest.nensalparc.adapter
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -30,32 +31,20 @@ class HourAdapterAdmin : HourAdapter(){
 
     override fun forOnBindViewHolder(holder: HourAdapter.ViewHolder, position: Int){
         val element = elements[position]
+        prepareUI(holder, position)
 
-        //holder.hour.text = element.start.toString() + "h"
-//
-        //Log.i("FRACTION", element.timeFractions?.count().toString())
-//
-        //holder.background.removeAllViews()
-//
-        //var i = 1020
-        //element.timeFractions?.forEach {
-        //    var fraction = it;
-        //    var inflatedLayout = LayoutInflater.from(holder.context).inflate(R.layout.item_timefraction_button, holder.background, true)
-        //    inflatedLayout.button_timefraction.text = it.currentCapacity.toString() + "/" + it.maxCapacity.toString()
-//
-        //    inflatedLayout.button_timefraction.setOnClickListener(){
-        //        val intent = Intent(holder.context, DisplayParticipatsActivity::class.java).apply {
-        //            putExtra("place", place)
-        //            putExtra("hour",fraction.start)
-        //            putExtra("date",date)
-        //            putExtra("fractionDuration",fraction.duration)
-        //        }
-        //        holder.context.startActivity(intent)
-        //    }
-        //    inflatedLayout.button_timefraction.id = i
-        //    i++
-//
-        //}
+        holder.button.setOnClickListener(){
+            val intent = Intent(holder.context, DisplayParticipatsActivity::class.java).apply {
+                putExtra("place", place)
+                putExtra("hour",element.start)
+                putExtra("date",date)
+                putExtra("fractionDuration",element.duration)
+            }
+            holder.context.startActivity(intent)
+        }
+
+
+
     }
 
 }

@@ -6,6 +6,7 @@ import android.animation.LayoutTransition
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Debug
@@ -33,6 +34,7 @@ import com.apptest.nensalparc.ui.share.ShareFragment
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.map
@@ -55,6 +57,20 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         if(user.uId == "") return;
         mMap = googleMap
+
+
+        var mode = context?.resources?.configuration?.uiMode
+        var nightModeFlags = Configuration.UI_MODE_NIGHT_MASK
+        if(mode != null)
+          nightModeFlags = mode and Configuration.UI_MODE_NIGHT_MASK;
+
+        if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this.requireContext(), R.raw.style_dark));
+        }else{
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this.requireContext(), R.raw.style_json));
+        }
+
+
         if (ContextCompat.checkSelfPermission(this.requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {

@@ -28,4 +28,7 @@
     <color name="inputFieldText">#5F5D70</color>
     <color name="buttonTextLight">#FFFFFF</color>
 
+    <color name="fullDark">#BC505050</color>
+    <color name="fullLight">#75505050</color>
+
 </resources>
