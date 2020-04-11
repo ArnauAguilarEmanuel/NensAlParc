@@ -169,7 +169,9 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
             put(Events.HAS_ALARM, true)
         }
         val updateUri: Uri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, id)
-        val rows: Int = baseContext.contentResolver.update(updateUri, values, null, null)
+        if(updateUri != null){
+            val rows: Int = baseContext.contentResolver.update(updateUri, values, null, null)
+        }
     }
 
     fun makeReservation(fraction: TimeFractionModel){
@@ -202,7 +204,7 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
         builder.setMessage("S'activarà una alarma 10 minuts abans de la reserva")
         builder.setPositiveButton("Confirmar",{ i, Int ->
 
-            reservation.alarmId = createAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!).toString()
+            reservation.alarmId = createAlarm(reservation.reservedDate!!, fraction.start!!, fraction.duration!!, reservation.name!!).toString()
             db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
 
         })
