@@ -12,6 +12,7 @@ data class Reservation(
     var reservationHour: String?=null,
     var reservedDate: String?=null,
     var reservedHour: String?=null,
-    var duration: String?=null
+    var duration: String?=null,
+    var alarmId: Long?=null
 
 ): Serializable

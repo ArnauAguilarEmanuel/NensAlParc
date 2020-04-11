@@ -1,8 +1,12 @@
 package com.apptest.nensalparc.ui.myReservation
 
+import android.content.ContentUris
+import android.content.ContentValues
 import android.content.Context
+import android.net.Uri
 import android.opengl.Visibility
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,8 +84,17 @@ class myReservationFragment : Fragment(){
         return root;
     }
 
+    fun deleteAlarm(id: Long)
+    {
+        val values = ContentValues().apply {
+        }
+        val deleteUri: Uri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, id)
+        val rows: Int = this.activity!!.contentResolver.delete(deleteUri, null, null)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var alarmID : Long? = null
         val userPreferences = activity?.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val userId = userPreferences?.getString("UserId", "")
         val UserName = userPreferences?.getString("UserName", "")
@@ -96,6 +109,7 @@ class myReservationFragment : Fragment(){
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(dataSnapshot.exists()){
+                    alarmID = dataSnapshot.child("alarmId").value as Long?
                     my_reservation_cancel.visibility = View.VISIBLE
                     text_reservation_address.visibility = View.VISIBLE
                     text_reservation_date.visibility = View.VISIBLE
@@ -106,6 +120,8 @@ class myReservationFragment : Fragment(){
                     durant.visibility = View.VISIBLE
 
                     my_reservation_cancel.setOnClickListener({
+                        if(alarmID != null) deleteAlarm(alarmID!!)
+
                         db.child("Locations").child(user.location.toString()).child("Places").child(dataSnapshot.child("placeID").value.toString()).child("SessionData")
                             .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
 

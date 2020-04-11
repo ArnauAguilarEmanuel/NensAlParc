@@ -3,6 +3,7 @@ package com.apptest.nensalparc.adapter
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
@@ -38,6 +39,8 @@ import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import android.provider.CalendarContract.Events
+import android.provider.CalendarContract.Events.TITLE
 import android.provider.CalendarContract.Events.CONTENT_URI
 import kotlin.time.milliseconds
 
@@ -100,7 +103,120 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
 
     }
 
+    fun createAlarm(myDate: String, myHour: Float, myDuration: Int, myLocation: String) : Long?{
+
+        if (ActivityCompat.checkSelfPermission(baseContext, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(fullcontext,"No s'ha pogut crear el recordatori", Toast.LENGTH_LONG).show();
+            return null
+        }
+
+
+        val calID: Long = 3
+
+        var startMillis: Long = 0
+        var endMillis: Long = 0
+
+        val finalDate = myDate.split("-")
+        val finalHour = myHour.toInt()
+        val finalMinutes = ((myHour - finalHour) * 100).toInt()
+
+        val c = Calendar.getInstance()
+        c.set(Calendar.YEAR, finalDate[2].toInt())
+        c.set(Calendar.MONTH, finalDate[1].toInt() - 1)
+        c.set(Calendar.DAY_OF_MONTH, finalDate[0].toInt())
+        c.set(Calendar.HOUR_OF_DAY, finalHour)
+        c.set(Calendar.MINUTE, finalMinutes)
+
+        val beginTime = c.timeInMillis
+        val endTime = beginTime + (myDuration * 60 * 1000)
+
+        val cr = baseContext.contentResolver
+        val values = ContentValues()
+        values.put(Events.DTSTART, beginTime)
+        values.put(Events.DTEND, endTime)
+        values.put(TITLE, "Reserva a " + myLocation)
+        values.put(Events.HAS_ALARM, true)
+        values.put(Events.CALENDAR_ID, calID)
+        values.put(Events.EVENT_TIMEZONE, TimeZone.getDefault().id)
+
+
+        val uri = cr.insert(CONTENT_URI, values)
+        Toast.makeText(fullcontext,"Reservat amb recordatori!", Toast.LENGTH_LONG).show();
+
+        return uri?.lastPathSegment!!.toLong()
+    }
+
+    fun updateAlarm(myDate: String, myHour: Float, myDuration: Int, myLocation: String, id: Long){
+
+        val finalDate = myDate.split("-")
+        val finalHour = myHour.toInt()
+        val finalMinutes = ((myHour - finalHour) * 100).toInt()
+
+        val c = Calendar.getInstance()
+        c.set(Calendar.YEAR, finalDate[2].toInt())
+        c.set(Calendar.MONTH, finalDate[1].toInt() - 1)
+        c.set(Calendar.DAY_OF_MONTH, finalDate[0].toInt())
+        c.set(Calendar.HOUR_OF_DAY, finalHour)
+        c.set(Calendar.MINUTE, finalMinutes)
+
+        val beginTime = c.timeInMillis
+        val endTime = beginTime + (myDuration * 60 * 1000)
+
+        val values = ContentValues().apply {
+            put(Events.DTSTART, beginTime)
+            put(Events.DTEND, endTime)
+            put(TITLE, "Reserva a " + myLocation)
+            put(Events.HAS_ALARM, true)
+        }
+        val updateUri: Uri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, id)
+        val rows: Int = baseContext.contentResolver.update(updateUri, values, null, null)
+    }
+
     fun makeReservation(fraction: TimeFractionModel){
+        val c = Calendar.getInstance()
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").child("Reservations").child(date).child(user.uId.toString()).setValue(fraction.start)
+        var reservation = Reservation();
+
+        reservation.address = place.address;
+        reservation.imageUrl = place.imageUrl;
+        reservation.name = place.name
+        reservation.placeID = place.placeID
+
+        reservation.reservationDate =day.toString() + "-" + (month + 1) + "-" + year
+        if(minute<10)
+            reservation.reservationHour =hour.toString() + ":" + "0"+minute
+        else
+            reservation.reservationHour =hour.toString() + ":" + minute
+        reservation.reservedDate = date
+        reservation.reservedHour = fraction.start.toString()
+        reservation.duration = fraction.duration.toString();
+
+        val builder = AlertDialog.Builder(fullcontext)
+        builder.setTitle("Vols crear un recordatori?")
+        builder.setMessage("S'activarà una alarma 10 minuts abans de la reserva")
+        builder.setPositiveButton("Confirmar",{ i, Int ->
+
+            reservation.alarmId = createAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!)
+            db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
+
+        })
+        builder.setNegativeButton("Cancel·lar",{ i, Int ->
+            Toast.makeText(fullcontext,"Reservat sense recordatori!", Toast.LENGTH_LONG).show();
+            db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
+        })
+
+        builder.show()
+
+    }
+
+
+    fun updateReservation(fraction: TimeFractionModel){
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
@@ -128,59 +244,20 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
 
         val builder = AlertDialog.Builder(fullcontext)
         builder.setTitle("Vols crear un recordatori?")
-        builder.setMessage("El recordatori serà 30 minuts avants de la reserva")
+        builder.setMessage("S'activarà una alarma 10 minuts abans de la reserva")
         builder.setPositiveButton("Confirmar",{ i, Int ->
 
-            val permissions = arrayOf(android.Manifest.permission.WRITE_CALENDAR)
-            ActivityCompat.requestPermissions(baseContext ,permissions, 0)
-
-            if (ActivityCompat.checkSelfPermission(fullcontext!!, Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
-                val calID: Long = 3 // Make sure to which calender you want to add event
-
-                var startMillis: Long = 0
-                var endMillis: Long = 0
-
-                val startTime = getElapsedTime(DateHolder(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH), DateHolder(Calendar.HOUR_OF_DAY, Calendar.MINUTE, 0))
-
-                var endDateTime = date.split("-")
-                var endDateHour = reservation.reservedHour!!.split(".")
-                var reminderTime = endDateHour[0].toInt() * 60 + endDateHour[1].toInt() - 30;
-
-                val reservedTime = getElapsedTime(DateHolder(endDateTime[0].toInt(), endDateTime[1].toInt(), endDateTime[2].toInt()), DateHolder(reminderTime/60, reminderTime%60, 0))
-                var daysLeft = reservedTime - startTime;
-
-
-                val beginTime = Calendar.getInstance().timeInMillis + daysLeft*60000
-                val endTime = beginTime + fraction.duration!! * 60000
-
-
-                val cr = baseContext.contentResolver
-                val values = ContentValues()
-                values.put(CalendarContract.Events.DTSTART, beginTime)
-                values.put(CalendarContract.Events.DTEND, endTime)
-                values.put(CalendarContract.Events.TITLE, "Reserva a " + reservation.name)
-                values.put(CalendarContract.Events.CALENDAR_ID, calID)
-                values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().id)
-
-                val uri =  cr.insert(CONTENT_URI, values)
-                var eventID = uri?.lastPathSegment!!.toLong()
-
-                var debug = Calendar.getInstance().timeInMillis.toString()
-                Toast.makeText(fullcontext,"Reservat amb recordatori!" + '\n' + debug, Toast.LENGTH_LONG).show();
-            }
-            else{
-                Toast.makeText(fullcontext,"Reservat sense recordatori!", Toast.LENGTH_LONG).show();
-            }
-
+            updateAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!, reservation.alarmId!!)
 
         })
-        builder.setNegativeButton("Cancelar",{ i, Int ->
+        builder.setNegativeButton("Cancel·lar",{ i, Int ->
             Toast.makeText(fullcontext,"Reservat sense recordatori!", Toast.LENGTH_LONG).show();
         })
 
         builder.show()
 
     }
+
 
     fun prepareUI(holder: ViewHolder, position: Int){
         val element = elements[position]
@@ -281,6 +358,7 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
                                     builder.setMessage("Confirma la reserva el dia"+date+" a les "+textData[0]+":"+minn+" i fins a les "+fHour+":"+fMin+"?")
                                     builder.setPositiveButton("Confirmar",{ i, Int ->
                                         makeReservation(element);
+
                                     })
                                     builder.setNegativeButton("Cancelar",{ i, Int ->})
 
@@ -296,7 +374,7 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
                                 builder.setPositiveButton("Si",{ i, Int ->
                                     db.child("Locations").child(user.location.toString()).child("Places").child(dataSnapshot.child("placeID").value.toString()).child("SessionData")
                                         .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
-                                    makeReservation(element);
+                                    updateReservation(element);
                                 })
                                 builder.setNegativeButton("No ",{ i, Int ->})
                                 builder.show()

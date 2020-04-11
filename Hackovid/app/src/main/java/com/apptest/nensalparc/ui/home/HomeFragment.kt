@@ -75,7 +75,7 @@ class HomeFragment: Fragment(), OnMapReadyCallback {
                 Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
 
-            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.WRITE_CALENDAR)
             ActivityCompat.requestPermissions(this.requireActivity(), permissions,0)
 
         }else {
