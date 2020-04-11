@@ -20,6 +20,12 @@ import kotlinx.android.synthetic.main.fragment_my_reservation.image_preview
 import kotlinx.android.synthetic.main.fragment_share.*
 import java.util.*
 
+fun Float.round(decimals: Int): Float {
+    var multiplier = 1f
+    repeat(decimals) { multiplier *= 10f }
+    return kotlin.math.round(this * multiplier) / multiplier
+}
+
 class myReservationFragment : Fragment(){
 
     val db = FirebaseDatabase.getInstance().reference;
@@ -93,6 +99,8 @@ class myReservationFragment : Fragment(){
                     my_reservation_cancel.visibility = View.VISIBLE
                     text_reservation_address.visibility = View.VISIBLE
                     text_reservation_date.visibility = View.VISIBLE
+                    reservaPerElDia.visibility = View.VISIBLE
+                    text_reservation_hour.visibility = View.VISIBLE
                     text_reservation_hour_end.visibility = View.VISIBLE
                     text_reservation_request.visibility = View.VISIBLE
                     durant.visibility = View.VISIBLE
@@ -105,6 +113,8 @@ class myReservationFragment : Fragment(){
                         my_reservation_cancel.visibility = View.GONE
                         text_reservation_address.visibility = View.GONE
                         text_reservation_date.visibility = View.GONE
+                        reservaPerElDia.visibility = View.GONE
+                        text_reservation_hour.visibility = View.GONE
                         text_reservation_hour_end.visibility = View.GONE
                         text_reservation_request.visibility = View.GONE
                         durant.visibility = View.GONE
@@ -120,15 +130,20 @@ class myReservationFragment : Fragment(){
                         text_reservation_address.text = dataSnapshot.child("address").value.toString()
                         text_reservation_date.text = dataSnapshot.child("reservedDate").value.toString().replace("-","/")
 
-                        var finishTextData = dataSnapshot.child("reservedHour").value.toString().split(".")
+                        var finishTextData = dataSnapshot.child("reservedHour").value.toString().toString().split(".")
+
+
+
+
                         var fHour = ""
                         var fMin = finishTextData[1]
                         if(fMin.length==1) {
                             fMin+="0"
                         }
                         var initialMin = fMin
+                        var initialHour = (finishTextData[0].toInt()+1).toString()
                         var minInt = fMin.toInt()+ dataSnapshot.child("duration").value.toString().toInt();
-                        if(minInt>= 60){
+                        if(minInt>= 59){
                             fMin ="00"
                             fHour = (finishTextData[0].toInt()+1).toString()
                         }else{
@@ -137,7 +152,10 @@ class myReservationFragment : Fragment(){
                         }
 
                         if(initialMin.length==1)initialMin+="0"
-                        text_reservation_hour.text = fHour+":"+initialMin
+                        if(dataSnapshot.child("reservedHour").value.toString().toFloat() < (initialHour+"."+initialMin).toFloat())
+                            text_reservation_hour.text = (initialHour.toInt()-1).toString()+":"+initialMin
+                        else
+                            text_reservation_hour.text = initialHour+":"+initialMin
                         text_reservation_hour_end.text = fHour+":"+fMin
                         var horaReserva = dataSnapshot.child("reservationHour").value.toString().split(":")
                         var horaReservaText = horaReserva[0]+":"+horaReserva[1]
@@ -154,6 +172,8 @@ class myReservationFragment : Fragment(){
                     my_reservation_cancel.visibility = View.GONE
                     text_reservation_address.visibility = View.GONE
                     text_reservation_date.visibility = View.GONE
+                    reservaPerElDia.visibility = View.GONE
+                    text_reservation_hour.visibility = View.GONE
                     text_reservation_hour_end.visibility = View.GONE
                     text_reservation_request.visibility = View.GONE
                     durant.visibility = View.GONE

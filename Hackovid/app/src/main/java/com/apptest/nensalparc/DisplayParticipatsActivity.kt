@@ -18,7 +18,11 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
-
+fun Float.round(decimals: Int): Float {
+    var multiplier = 1f
+    repeat(decimals) { multiplier *= 10f }
+    return kotlin.math.round(this * multiplier) / multiplier
+}
 
 class DisplayParticipatsActivity : AppCompatActivity() {
 
@@ -46,7 +50,7 @@ class DisplayParticipatsActivity : AppCompatActivity() {
         user = User(UserName, UserLocation, UserDNI, userId);
 
         placeNameDisplay.text = place.name;
-        timeDisplay.text = dateId.replace("-","/") +"\n"+hour.toString().replace(".",":") +" - "+(hour+(fractionDuration/100f)).toString().replace(".",":")
+        timeDisplay.text = dateId.replace("-","/") +"\n"+hour.toString().replace(".",":") +" - "+(hour+(fractionDuration/100f)).round(2).toString().replace(".",":")
 
         lifecycleScope.launch {
             var participantsScrollview = scrollView;

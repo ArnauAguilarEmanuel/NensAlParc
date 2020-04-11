@@ -194,7 +194,7 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                             var reservedHour = parseDate(dataSnapshot.child( "reservedHour").value.toString(),".")
                             if(datePassed(reservedDate, reservedHour, dataSnapshot.child("duration").value.toString().toInt())){
                                 if(element.currentCapacity != element.maxCapacity){
-                                    val builder = AlertDialog.Builder(fullcontext,R.style.AlertDialogTheme)
+                                    val builder = AlertDialog.Builder(fullcontext)
                                     builder.setTitle("Confirmar reserva?")
 
                                     holder.button.text = element.currentCapacity.toString() + "/" + element.maxCapacity.toString()
@@ -211,8 +211,9 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                                     }else{
                                         fHour = finishTextData[0]
                                     }
-
-                                    builder.setMessage("Confirma la reserva el dia"+"X"+" a les "+textData[0]+":"+min+" i fins a les "+fHour+":"+fMin+"?")
+                                    var minn = min.toString()
+                                    if(min.length==1)minn+="0"
+                                    builder.setMessage("Confirma la reserva el dia"+date+" a les "+textData[0]+":"+minn+" i fins a les "+fHour+":"+fMin+"?")
                                     builder.setPositiveButton("Confirmar",{ i, Int ->
                                         makeReservation(element);
                                     })
@@ -232,8 +233,9 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                                         .child("Reservations").child(dataSnapshot.child("reservedDate").value.toString()).child(user.uId.toString()).removeValue()
                                     makeReservation(element);
                                 })
-                                builder.setNegativeButton("No",{ i, Int ->})
+                                builder.setNegativeButton("No ",{ i, Int ->})
                                 builder.show()
+
                             }
                         }else{
                             val builder = AlertDialog.Builder(fullcontext)
@@ -254,8 +256,9 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
                                 fHour = finishTextData[0]
                                 fMin = minInt.toString()
                             }
-
-                            builder.setMessage("Confirma la reserva el dia "+date.replace("-","/")+" a les "+textData[0]+":"+min+" i fins a les "+fHour+":"+fMin+"?")
+                            var minn = min.toString()
+                            if(min.length==1)minn+="0"
+                            builder.setMessage("Confirma la reserva el dia "+date.replace("-","/")+" a les "+textData[0]+":"+minn+" i fins a les "+fHour+":"+fMin+"?")
                             builder.setPositiveButton("Confirmar",{ i, Int ->
                                 makeReservation(element);
                             })

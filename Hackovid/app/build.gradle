@@ -7,6 +7,17 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\arnau\\NensAlParc.jks')
+            storePassword 'NensAlParc'
+            keyAlias = 'NensAlParc'
+            keyPassword 'NensAlParc'
+        }
+        debug {
+            storeFile file('C:\\Users\\arnau\\NensAlParc.jks')
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {

@@ -52,7 +52,7 @@ class VerifyPhoneActivity : AppCompatActivity() {
 
     }
 
-    private fun verifyCode(code:String){
+    private fun     verifyCode(code:String){
         Log.i("Id", storedVerificationId)
         var credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
 
