@@ -31,10 +31,12 @@
             android:orientation="horizontal"
             android:gravity="center"
             >
-            <Spinner
+            <TextView
                 android:layout_width="@dimen/title_screen_spinner_width"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCountries"
+                android:gravity="right"
+                android:textSize="20dp"
+                android:text="+34"
                 />
 
             <com.google.android.material.textfield.TextInputLayout

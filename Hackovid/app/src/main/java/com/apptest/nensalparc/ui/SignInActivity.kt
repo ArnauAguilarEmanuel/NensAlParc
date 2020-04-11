@@ -19,11 +19,9 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
-        spinnerCountries.adapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,CountryCodes.country);
 
 
         button.setOnClickListener(View.OnClickListener {
-            var code = CountryCodes.code[spinnerCountries.selectedItemPosition];
             var number = editText.text.toString();
             if(number.isEmpty()){
                 editText.setError("Cal un numero de telefon");
