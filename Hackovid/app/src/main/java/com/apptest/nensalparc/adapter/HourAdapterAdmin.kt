@@ -1,5 +1,6 @@
 package com.apptest.nensalparc.adapter
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -26,7 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
-class HourAdapterAdmin : HourAdapter(){
+class HourAdapterAdmin (act : Activity) : HourAdapter(act){
 
 
     override fun forOnBindViewHolder(holder: HourAdapter.ViewHolder, position: Int){

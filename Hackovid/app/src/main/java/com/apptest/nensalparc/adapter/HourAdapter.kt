@@ -1,12 +1,18 @@
 package com.apptest.nensalparc.adapter
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.ColorSpace
+import android.net.Uri
 import android.opengl.Visibility
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +20,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.apptest.nensalparc.*
+import com.apptest.nensalparc.ui.send.PlaceActivity
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,15 +38,17 @@ import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import android.provider.CalendarContract.Events.CONTENT_URI
+import kotlin.time.milliseconds
 
-open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
+open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
 
     var elements = ArrayList<TimeFractionModel>()
     var date: String = ""
     var user: User = User()
     var place: AreaInfoModel = AreaInfoModel()
     val db = FirebaseDatabase.getInstance().reference;
-
+    val baseContext = cont
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_timefraction_button, parent, false)
         return ViewHolder(itemView)
@@ -97,6 +107,7 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+
         db.child("Locations").child(user.location.toString()).child("Places").child(place.placeID.toString()).child("SessionData").child("Reservations").child(date).child(user.uId.toString()).setValue(fraction.start)
         var reservation = Reservation();
 
@@ -114,7 +125,61 @@ open class HourAdapter : RecyclerView.Adapter<HourAdapter.ViewHolder>(){
         reservation.reservedHour = fraction.start.toString()
         reservation.duration = fraction.duration.toString();
         db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
-        Toast.makeText(fullcontext,"Reservat!", Toast.LENGTH_LONG).show();
+
+        val builder = AlertDialog.Builder(fullcontext)
+        builder.setTitle("Vols crear un recordatori?")
+        builder.setMessage("El recordatori serà 30 minuts avants de la reserva")
+        builder.setPositiveButton("Confirmar",{ i, Int ->
+
+            val permissions = arrayOf(android.Manifest.permission.WRITE_CALENDAR)
+            ActivityCompat.requestPermissions(baseContext ,permissions, 0)
+
+            if (ActivityCompat.checkSelfPermission(fullcontext!!, Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
+                val calID: Long = 3 // Make sure to which calender you want to add event
+
+                var startMillis: Long = 0
+                var endMillis: Long = 0
+
+                val startTime = getElapsedTime(DateHolder(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH), DateHolder(Calendar.HOUR_OF_DAY, Calendar.MINUTE, 0))
+
+                var endDateTime = date.split("-")
+                var endDateHour = reservation.reservedHour!!.split(".")
+                var reminderTime = endDateHour[0].toInt() * 60 + endDateHour[1].toInt() - 30;
+
+                val reservedTime = getElapsedTime(DateHolder(endDateTime[0].toInt(), endDateTime[1].toInt(), endDateTime[2].toInt()), DateHolder(reminderTime/60, reminderTime%60, 0))
+                var daysLeft = reservedTime - startTime;
+
+
+                val beginTime = Calendar.getInstance().timeInMillis + daysLeft*60000
+                val endTime = beginTime + fraction.duration!! * 60000
+
+
+                val cr = baseContext.contentResolver
+                val values = ContentValues()
+                values.put(CalendarContract.Events.DTSTART, beginTime)
+                values.put(CalendarContract.Events.DTEND, endTime)
+                values.put(CalendarContract.Events.TITLE, "Reserva a " + reservation.name)
+                values.put(CalendarContract.Events.CALENDAR_ID, calID)
+                values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().id)
+
+                val uri =  cr.insert(CONTENT_URI, values)
+                var eventID = uri?.lastPathSegment!!.toLong()
+
+                var debug = Calendar.getInstance().timeInMillis.toString()
+                Toast.makeText(fullcontext,"Reservat amb recordatori!" + '\n' + debug, Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(fullcontext,"Reservat sense recordatori!", Toast.LENGTH_LONG).show();
+            }
+
+
+        })
+        builder.setNegativeButton("Cancelar",{ i, Int ->
+            Toast.makeText(fullcontext,"Reservat sense recordatori!", Toast.LENGTH_LONG).show();
+        })
+
+        builder.show()
+
     }
 
     fun prepareUI(holder: ViewHolder, position: Int){

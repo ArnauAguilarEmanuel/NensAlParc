@@ -55,7 +55,7 @@ class PlaceActivity: AppCompatActivity() {
 
 
     }
-    private var adapter = HourAdapter()
+    private var adapter = HourAdapter(this)
     val db = FirebaseDatabase.getInstance().reference;
 
     var hours = ArrayList<TimeFractionModel>()
@@ -154,7 +154,7 @@ class PlaceActivity: AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists())
-                    adapter = HourAdapterAdmin()
+                    adapter = HourAdapterAdmin(context)
 
 
 
