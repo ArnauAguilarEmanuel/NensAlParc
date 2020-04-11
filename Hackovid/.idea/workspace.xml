@@ -152,10 +152,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="524">
+              <caret line="257" lean-forward="true" selection-start-line="257" selection-end-line="257" />
               <folding>
-                <element signature="e#40#1228#0" expanded="true" />
+                <element signature="e#40#1743#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,11 +164,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="138" column="52" lean-forward="true" selection-start-line="138" selection-start-column="52" selection-end-line="138" selection-end-column="52" />
-              <folding>
-                <element signature="e#49#839#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="47">
+              <caret line="111" column="85" selection-start-line="111" selection-start-column="85" selection-end-line="111" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -176,8 +173,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Reservation.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state relative-caret-position="360">
+              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -206,7 +203,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
+            <state relative-caret-position="2736">
               <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
             </state>
           </provider>
@@ -287,8 +284,9 @@
         <option value="$PROJECT_DIR$/app/google-services.json" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/DisplayParticipatsActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Reservation.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt" />
       </list>
     </option>
@@ -305,8 +303,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,6 +373,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -577,11 +575,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.6960193" visible="true" weight="0.19395867" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.694813" visible="true" weight="0.19395867" />
       <window_info id="Structure" order="2" side_tool="true" />
-      <window_info active="true" id="Build Variants" order="3" sideWeight="0.3039807" side_tool="true" visible="true" weight="0.19395867" />
+      <window_info active="true" id="Build Variants" order="3" sideWeight="0.305187" side_tool="true" visible="true" weight="0.19395867" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" />
@@ -593,9 +592,9 @@
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49960256" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="5" sideWeight="0.49960256" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.17209856" side_tool="true" visible="true" weight="0.10184182" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.17249602" side_tool="true" visible="true" weight="0.10184182" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.8279014" visible="true" weight="0.10184182" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.827504" visible="true" weight="0.10184182" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" weight="0.18163753" />
@@ -667,48 +666,48 @@
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>147</line>
+          <line>289</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>149</line>
+          <line>291</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>151</line>
+          <line>293</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>153</line>
+          <line>295</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>155</line>
+          <line>297</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <condition expression="element.currentCapacity&gt;0" language="kotlin" />
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt</url>
-          <line>145</line>
+          <line>287</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt</url>
-          <line>144</line>
+          <line>160</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
@@ -760,12 +759,12 @@
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml">
-      <provider editor-type-id="nav-designer" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
         </state>
       </provider>
+      <provider editor-type-id="nav-designer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_slideshow.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -901,12 +900,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/send/PlaceActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="36" selection-start-line="36" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="e#40#1416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/DisplayParticipatsActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
           <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2736">
+          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -934,46 +951,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/Reservation.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="360">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/adapter/HourAdapter.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="524">
+          <caret line="257" lean-forward="true" selection-start-line="257" selection-end-line="257" />
           <folding>
-            <element signature="e#40#1228#0" expanded="true" />
+            <element signature="e#40#1743#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/send/PlaceActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="36" selection-start-line="36" selection-end-line="40" selection-end-column="1" />
-          <folding>
-            <element signature="e#40#1416#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_reservation.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/apptest/nensalparc/ui/myReservation/myReservationFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="138" column="52" lean-forward="true" selection-start-line="138" selection-start-column="52" selection-end-line="138" selection-end-column="52" />
-          <folding>
-            <element signature="e#49#839#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="47">
+          <caret line="111" column="85" selection-start-line="111" selection-start-column="85" selection-end-line="111" selection-end-column="85" />
         </state>
       </provider>
     </entry>

@@ -109,7 +109,7 @@ class myReservationFragment : Fragment(){
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(dataSnapshot.exists()){
-                    alarmID = dataSnapshot.child("alarmId").value as Long?
+                    alarmID = dataSnapshot.child("alarmId").value.toString().toLong()
                     my_reservation_cancel.visibility = View.VISIBLE
                     text_reservation_address.visibility = View.VISIBLE
                     text_reservation_date.visibility = View.VISIBLE

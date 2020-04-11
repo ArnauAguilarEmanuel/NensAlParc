@@ -202,7 +202,7 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
         builder.setMessage("S'activarà una alarma 10 minuts abans de la reserva")
         builder.setPositiveButton("Confirmar",{ i, Int ->
 
-            reservation.alarmId = createAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!)
+            reservation.alarmId = createAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!).toString()
             db.child("Users").child(user.uId.toString()).child("Reservation").setValue(reservation)
 
         })
@@ -247,7 +247,7 @@ open class HourAdapter(cont : Activity) : RecyclerView.Adapter<HourAdapter.ViewH
         builder.setMessage("S'activarà una alarma 10 minuts abans de la reserva")
         builder.setPositiveButton("Confirmar",{ i, Int ->
 
-            updateAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!, reservation.alarmId!!)
+            updateAlarm(reservation.reservationDate!!, fraction.start!!, fraction.duration!!, reservation.name!!, reservation.alarmId!!.toLong())
 
         })
         builder.setNegativeButton("Cancel·lar",{ i, Int ->
